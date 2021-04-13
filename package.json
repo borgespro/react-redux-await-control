@@ -15,11 +15,15 @@
     "redux",
     "await",
     "control",
+    "redux-actions",
     "react",
     "saga",
     "flux"
   ],
   "license": "MIT",
+  "peerDependencies": {
+    "redux-actions": "^2.6.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
@@ -61,6 +65,10 @@
     ],
     "collectCoverageFrom": [
       "**/*.{ts}"
+    ],
+    "modulePaths": [
+      "<rootDir>/src/",
+      "<rootDir/__tests__/"
     ]
   }
 }
