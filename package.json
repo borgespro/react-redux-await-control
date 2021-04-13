@@ -2,8 +2,19 @@
   "name": "redux-await-control",
   "version": "0.1.0",
   "description": "Helping to control the state of async actions flux.",
+  "repository": "https://github.com/borgespro/redux-await-control",
+  "bugs": "https://github.com/borgespro/redux-await-control/issues",
+  "homepage": "https://github.com/borgespro/redux-await-control",
   "main": "index.js",
-  "author": "Thiago Borges",
+  "author": "Thiago Borges <thiago@borges.pro>",
+  "keywords": [
+    "redux",
+    "await",
+    "control",
+    "react",
+    "saga",
+    "flux"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",
