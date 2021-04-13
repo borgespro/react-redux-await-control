@@ -5,7 +5,11 @@
   "repository": "https://github.com/borgespro/redux-await-control",
   "bugs": "https://github.com/borgespro/redux-await-control/issues",
   "homepage": "https://github.com/borgespro/redux-await-control",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "author": "Thiago Borges <thiago@borges.pro>",
   "keywords": [
     "redux",
