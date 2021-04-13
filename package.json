@@ -39,7 +39,6 @@
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "eslint --fix",
-      "stylelint './src/**/*.tsx'",
       "prettier --write",
       "git add"
     ],
