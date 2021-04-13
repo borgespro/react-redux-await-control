@@ -1,0 +1,11 @@
+{
+  "name": "redux-await-control",
+  "version": "0.1.0",
+  "description": "Helping to control the state of async actions flux.",
+  "main": "index.js",
+  "author": "Thiago Borges",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
