@@ -21,8 +21,8 @@
     "flux"
   ],
   "license": "MIT",
-  "peerDependencies": {
-    "redux-actions": "^2.6.0"
+  "dependencies": {
+    "redux-actions": "^2.6.5"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
@@ -31,6 +31,7 @@
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-typescript": "^7.13.0",
     "@types/jest": "^26.0.22",
+    "@types/redux-actions": "^2.6.1",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
