@@ -12,4 +12,11 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'jest'],
   rules: {},
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ts'],
+      },
+    },
+  },
 };
