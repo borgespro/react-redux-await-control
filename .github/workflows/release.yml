@@ -20,6 +20,15 @@ jobs:
       - name: Install Dependencies
         run: yarn
 
+      - name: Lint
+        run: yarn lint-staged
+
+      - name: Test
+        run: yarn test
+
+      - name: Build
+        run: yarn build
+
       - name: Publish to npm
         uses: changesets/action@master
         with:
