@@ -11,3 +11,4 @@
 ### Patch Changes
 
 - 3dbf675: Installing and setting up CI/CD
+- 73f07d0: Fixing changeset config

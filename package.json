@@ -63,6 +63,7 @@
     "prepare": "husky install",
     "build": "tsc",
     "test": "jest",
+    "version-packages": "changeset version && prettier --write",
     "release": "yarn build && changeset publish"
   },
   "jest": {
