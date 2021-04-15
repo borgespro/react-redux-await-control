@@ -62,7 +62,8 @@
   "scripts": {
     "prepare": "husky install",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "release": "yarn build && changeset publish"
   },
   "jest": {
     "coveragePathIgnorePatterns": [
