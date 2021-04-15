@@ -16,6 +16,7 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 12
+          always-auth: true
 
       - name: Install Dependencies
         run: yarn
@@ -31,8 +32,7 @@ jobs:
 
       - name: Publish to npm
         uses: changesets/action@master
-        with:
-          publish: yarn publish
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc && yarn publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
