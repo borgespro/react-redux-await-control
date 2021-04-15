@@ -1,1 +1,4 @@
-export * as createAsyncAction from './createAsyncAction';
+import createAsyncAction from './createAsyncAction';
+import reducer from './reducer';
+
+export { createAsyncAction, reducer };
