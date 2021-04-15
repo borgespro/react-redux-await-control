@@ -12,7 +12,7 @@ const STATUS_LIST = [START, SUCCESS, FAILURE, CANCEL];
 
 export default function createAsyncAction<Payload, Meta = never>(
   actionName: string,
-  prefix?: string,
+  prefix: string = 'ASYNC_ACTION',
 ): AsyncActionControl {
   const asyncActionsMapper = {};
   const asyncLabelsMapper = {};
@@ -35,7 +35,9 @@ export default function createAsyncAction<Payload, Meta = never>(
     [asyncLabelsMapper[CANCEL].label]: cancel,
   } = createActions(asyncActionsMapper, { prefix });
 
-  return new AsyncActionControl(actionName, {
+  const actionLabel = `${prefix}/${actionName}`;
+
+  return new AsyncActionControl(actionLabel, {
     start,
     success,
     failure,
