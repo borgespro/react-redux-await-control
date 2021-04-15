@@ -55,4 +55,10 @@ describe('Testing createAsyncAction.', () => {
     expect(actions.cancel).toBeDefined();
     expect(actions.success).toBeDefined();
   });
+
+  it('Create LOAD_DATA as async action passing empty prefix.', () => {
+    const actionName = 'LOAD_DATA';
+    const actions = createAsyncAction(actionName, '');
+    expect(actions.label).toEqual(`ASYNC_ACTION/${actionName}`);
+  });
 });
