@@ -9,6 +9,8 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@master
 
@@ -20,8 +22,6 @@ jobs:
 
       - name: Install Dependencies
         run: yarn
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Lint
         run: yarn lint-staged
@@ -35,5 +35,4 @@ jobs:
           publish: yarn release
           version: yarn version-packages
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
