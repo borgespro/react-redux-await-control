@@ -2,14 +2,7 @@ import { createActions } from 'redux-actions';
 
 import AsyncActionControl from './AsyncActionControl';
 import { camelCase } from './utils';
-
-const START = 'START';
-const SUCCESS = 'SUCCESS';
-const FAILURE = 'FAILURE';
-const CANCEL = 'CANCEL';
-
-const STATUS_LIST = [START, SUCCESS, FAILURE, CANCEL];
-const PREFIX = 'ASYNC_ACTION';
+import { PREFIX, CANCEL, FAILURE, START, SUCCESS, STATUS_LIST } from './constants';
 
 export default function createAsyncAction<Payload, Meta = never>(
   actionName: string,
