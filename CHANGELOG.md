@@ -1,5 +1,16 @@
 # react-redux-await-control
 
+## 0.2.0
+
+### Minor Changes
+
+- 0e95440: Adding reducer for async action control
+- 6e2122a: Fixing support for action prefix name for type
+
+### Patch Changes
+
+- e7c0285: Fixing yarn publishing
+
 ## 0.1.2
 
 ### Patch Changes
