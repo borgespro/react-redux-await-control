@@ -1,6 +1,6 @@
 {
   "name": "react-redux-await-control",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Helping to control the state of async actions flux.",
   "repository": "https://github.com/borgespro/react-redux-await-control",
   "bugs": "https://github.com/borgespro/react-redux-await-control/issues",
@@ -64,8 +64,8 @@
     "prepare": "husky install",
     "build": "tsc",
     "test": "jest",
-    "version-packages": "changeset version && prettier --write",
-    "release": "yarn build && changeset publish"
+    "version-packages": "yarn changeset version && prettier --write",
+    "release": "yarn build && yarn changeset publish"
   },
   "jest": {
     "coveragePathIgnorePatterns": [

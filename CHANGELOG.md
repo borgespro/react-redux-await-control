@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.3.0
+
+### Minor Changes
+
+- Now it`s possible to add a key for action, then it`s possible controlling some actions of the same type
+
 ## 0.2.0
 
 ### Minor Changes
