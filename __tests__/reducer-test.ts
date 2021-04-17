@@ -1,10 +1,9 @@
-import { Action } from 'redux-actions';
-
 import { reducer } from '../src';
+import { BaseAction } from '../src/types';
 
 const MOCK_ACTION = 'MOCK_ACTION';
 
-const mockAction = (suffix: string): Action<any> => ({
+const mockAction = (suffix: string): BaseAction => ({
   type: `PREFIX_TEST/${MOCK_ACTION}_${suffix}`,
   payload: true,
 });

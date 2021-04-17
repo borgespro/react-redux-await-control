@@ -13,9 +13,7 @@ export default function createAsyncAction<Payload, Meta = never>(
 
   STATUS_LIST.forEach((status) => {
     const fetchActionName = `${actionName}_${status}`;
-    asyncLabelsMapper[status] = {
-      label: camelCase(fetchActionName),
-    };
+    asyncLabelsMapper[status] = { label: camelCase(fetchActionName) };
     asyncActionsMapper[fetchActionName] = [
       (payload: Payload): Payload => payload,
       (payload: Payload, meta: Meta): Meta => meta,
@@ -31,7 +29,7 @@ export default function createAsyncAction<Payload, Meta = never>(
 
   const actionLabel = `${prefix || PREFIX}/${actionName}`;
 
-  return new AsyncActionControl(actionLabel, {
+  return new AsyncActionControl(actionLabel, actionName, {
     start,
     success,
     failure,

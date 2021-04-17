@@ -69,14 +69,18 @@
   },
   "jest": {
     "coveragePathIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/",
+      "<rootDir>/__tests__/utils"
     ],
     "collectCoverageFrom": [
       "**/*.{ts}"
     ],
     "modulePaths": [
       "<rootDir>/src/",
-      "<rootDir/__tests__/"
+      "<rootDir>/__tests__/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/__tests__/utils"
     ]
   }
 }
