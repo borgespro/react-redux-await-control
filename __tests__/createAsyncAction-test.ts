@@ -15,11 +15,11 @@ describe('Testing createAsyncAction.', () => {
   });
 
   it('Validate failure of asyncAction', () => {
-    const testError = new Error('Test Example Error');
-    const { type, payload, error } = asyncAction.failure(testError);
+    const TestError = new Error('Test Example Error');
+    const { type, payload, error } = asyncAction.failure(TestError);
     expect(type).toEqual('ASYNC_ACTION/GET_DATA_FAILURE');
     expect(error).toEqual(true);
-    expect(payload).toEqual(testError);
+    expect(payload).toEqual(TestError);
   });
 
   it('Validate cancel of asyncAction', () => {

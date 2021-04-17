@@ -21,12 +21,18 @@ module.exports = {
         ts: 'never',
       },
     ],
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.ts'],
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: { multiline: true, minProperties: 3 },
+        ObjectPattern: { multiline: true },
+        ImportDeclaration: { multiline: true, minProperties: 3 },
+        ExportDeclaration: { multiline: true, minProperties: 3 },
       },
-    },
+    ],
+    'no-empty-function': 'off',
+    'no-useless-constructor': 'off',
+    'no-unused-vars': 'off',
   },
+  settings: { 'import/resolver': { node: { extensions: ['.js', '.ts'] } } },
 };

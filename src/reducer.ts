@@ -1,6 +1,6 @@
 import { ActionMeta } from 'redux-actions';
 
-import { AsyncActionReducer, AsyncActionState } from './types';
+import { AsyncActionReducer, AsyncActionState, BaseAction } from './types';
 import { CANCEL, FAILURE, START, SUCCESS } from './constants';
 
 const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<any, any>) => {
@@ -14,21 +14,21 @@ const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<an
     Object.assign(actionPayloadMeta, meta);
   }
 
-  if (actionPayloadMeta.awaitId) {
-    return `${requestName}_${actionPayloadMeta.awaitId.toString().toUpperCase()}`;
+  if (actionPayloadMeta.actionId) {
+    return `${requestName}_${actionPayloadMeta.actionId.toString().toUpperCase()}`;
   }
 
   return requestName;
 };
 
-export default function reducer(state: AsyncActionReducer = {}, action: ActionMeta<any, any>): AsyncActionReducer {
+export default function reducer(state: AsyncActionReducer = {}, action: BaseAction): AsyncActionReducer {
   const matches = /(.*)\/(.*)_(START|SUCCESS|FAILURE|CANCEL)/.exec(action.type);
 
   if (!matches) return state;
 
   const [, , requestName, requestState] = matches;
 
-  const formattedRequestName = formatRequestName(requestName, action);
+  const formattedRequestName = formatRequestName(requestName, action as ActionMeta<any, any>);
 
   if (state[formattedRequestName] === START && [SUCCESS, FAILURE, CANCEL].includes(requestState)) {
     return { ...state, [formattedRequestName]: requestState as AsyncActionState };
