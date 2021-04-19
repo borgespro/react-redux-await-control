@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.4.0
+
+### Minor Changes
+
+- 93e9a16: Suport for redux selectors
+
 ## 0.3.0
 
 ### Minor Changes
