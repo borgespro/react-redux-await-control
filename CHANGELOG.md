@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.7.0
+
+### Minor Changes
+
+- It was added the initial documentation
+
 ## 0.6.0
 
 ### Minor Changes

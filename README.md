@@ -75,4 +75,4 @@ export const removeTodo = createAsyncAction('REMOVE_TODO');
 
 ## License
 
-[MIT](LICENSE.md)
+[MIT](LICENSE)
