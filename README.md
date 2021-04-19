@@ -70,7 +70,6 @@ export default function Component() {
   );
 }
 
-export const removeTodo = createAsyncAction('REMOVE_TODO');
 ```
 
 ## License
