@@ -1,3 +1,0 @@
-describe('Testing useAwaitControl', () => {
-  it('', () => {});
-});

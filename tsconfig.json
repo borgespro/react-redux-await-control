@@ -3,9 +3,8 @@
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "jsx": "react"
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }
