@@ -1,3 +1,5 @@
+import { ReducersMapObject } from 'redux';
+
 import { AwaitControlInitializer } from './types';
 
 export default class AwaitControl {
@@ -26,4 +28,12 @@ export default class AwaitControl {
   }
 
   private constructor() {}
+
+  mix<S>(reducers: ReducersMapObject<S, any>): ReducersMapObject<S, any> {
+    if (reducers[this.keyReducer]) {
+      throw new Error(`keyReducer: ${this.keyReducer} is already in use.`);
+    }
+
+    return { ...reducers, [this.keyReducer]: {} };
+  }
 }
