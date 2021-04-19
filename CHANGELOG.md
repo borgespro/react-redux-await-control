@@ -1,5 +1,15 @@
 # react-redux-await-control
 
+## 0.6.0
+
+### Minor Changes
+
+- c0b8178: Mix method was added to help with reducers
+
+### Patch Changes
+
+- fe8101b: Mix method was fixed
+
 ## 0.5.0
 
 ### Minor Changes
