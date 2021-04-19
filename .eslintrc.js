@@ -9,9 +9,13 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',
+    ecmaFeatures: { jsx: true, tsx: true },
   },
-  plugins: ['@typescript-eslint', 'jest'],
+  plugins: ['@typescript-eslint', 'jest', 'react'],
   rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
     'import/prefer-default-export': 'off',
     'import/extensions': [
       'error',
@@ -33,6 +37,7 @@ module.exports = {
     'no-empty-function': 'off',
     'no-useless-constructor': 'off',
     'no-unused-vars': 'off',
+    'no-use-before-define': 'off',
   },
-  settings: { 'import/resolver': { node: { extensions: ['.js', '.ts'] } } },
+  settings: { 'import/resolver': { node: { extensions: ['.js', '.ts', '.jsx', '.tsx'] } } },
 };

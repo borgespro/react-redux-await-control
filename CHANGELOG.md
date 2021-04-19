@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.5.0
+
+### Minor Changes
+
+- Adding hook with dipatchers and selectors
+
 ## 0.4.0
 
 ### Minor Changes
