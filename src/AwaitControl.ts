@@ -1,5 +1,6 @@
 import { ReducersMapObject } from 'redux';
 
+import reducer from './reducer';
 import { AwaitControlInitializer } from './types';
 
 export default class AwaitControl {
@@ -34,6 +35,6 @@ export default class AwaitControl {
       throw new Error(`keyReducer: ${this.keyReducer} is already in use.`);
     }
 
-    return { ...reducers, [this.keyReducer]: {} };
+    return { ...reducers, [this.keyReducer]: reducer };
   }
 }
