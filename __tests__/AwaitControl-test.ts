@@ -9,4 +9,10 @@ describe('Testing AwaitControl', () => {
     AwaitControl.init({ keyReducer: 'testKeyReducer' });
     expect(AwaitControl.getControl().keyReducer).toEqual('testKeyReducer');
   });
+
+  it('mix method validation', () => {
+    const baseReducers = {};
+    const reducers = AwaitControl.init().mix<typeof baseReducers>(baseReducers);
+    expect(reducers[AwaitControl.getControl().keyReducer]).toBeDefined();
+  });
 });
