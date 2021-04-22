@@ -1,6 +1,10 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+if [ -t 1 ]; then
+  exec < /dev/tty
+fi
+
 yarn test
 yarn lint-staged
 echo 'Do you want to version this update?'
