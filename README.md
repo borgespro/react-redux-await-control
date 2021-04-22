@@ -72,6 +72,26 @@ export default function Component() {
 
 ```
 
+## Reference API
+
+### AwaitControl
+
+| Property | Type | Return Type | Description |
+| -------- | ---- | ----------- | ----------- |
+|          |      |             |             |
+
+### AsyncActionControl
+
+| Property | Type | Return Type | Description |
+| -------- | ---- | ----------- | ----------- |
+|          |      |             |             |
+
+### AwaitControlHook
+
+| Property | Type | Return Type | Description |
+| -------- | ---- | ----------- | ----------- |
+|          |      |             |             |
+
 ## License
 
 [MIT](LICENSE)
