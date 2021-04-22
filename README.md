@@ -82,6 +82,10 @@ export default function Component() {
 | getControl |            |             |             |
 | mix        |            |             |             |
 
+| Property   | Type | Description |
+| ---------- | ---- | ----------- |
+| keyReducer |      |             |
+
 ### AsyncActionControl
 
 | Method  | Parameters | Return Type | Description |
@@ -90,6 +94,11 @@ export default function Component() {
 | cancel  |            |             |             |
 | success |            |             |             |
 | failure |            |             |             |
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| label    |      |             |
+| rawKey   |      |             |
 
 ### AwaitControlHook
 
