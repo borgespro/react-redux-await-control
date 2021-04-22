@@ -1,5 +1,27 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+if [ -t 1 ]; then
+  exec < /dev/tty
+fi
+
 yarn test
 yarn lint-staged
+echo 'Do you want to version this update?'
+PS3='Answer: '
+options=("yes" "no")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "yes")
+            yanr changeset
+            git add .changeset/*
+            exit 0
+            ;;
+        "no")
+            exit 0
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+exit 0
