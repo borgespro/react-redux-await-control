@@ -76,21 +76,33 @@ export default function Component() {
 
 ### AwaitControl
 
-| Property | Type | Return Type | Description |
-| -------- | ---- | ----------- | ----------- |
-|          |      |             |             |
+| Method     | Parameters | Return Type | Description |
+| ---------- | ---------- | ----------- | ----------- |
+| init       |            |             |             |
+| getControl |            |             |             |
+| mix        |            |             |             |
 
 ### AsyncActionControl
 
-| Property | Type | Return Type | Description |
-| -------- | ---- | ----------- | ----------- |
-|          |      |             |             |
+| Method  | Parameters | Return Type | Description |
+| ------- | ---------- | ----------- | ----------- |
+| start   |            |             |             |
+| cancel  |            |             |             |
+| success |            |             |             |
+| failure |            |             |             |
 
 ### AwaitControlHook
 
-| Property | Type | Return Type | Description |
-| -------- | ---- | ----------- | ----------- |
-|          |      |             |             |
+| Method       | Parameters | Return Type | Description |
+| ------------ | ---------- | ----------- | ----------- |
+| start        |            |             |             |
+| cancel       |            |             |             |
+| success      |            |             |             |
+| failure      |            |             |             |
+| isRunning    |            |             |             |
+| isCancelled  |            |             |             |
+| hasFailure   |            |             |             |
+| isSuccessful |            |             |             |
 
 ## License
 
