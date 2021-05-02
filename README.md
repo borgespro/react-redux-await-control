@@ -15,17 +15,21 @@ yarn add react-redux-await-control
 
 ## Usage
 
-#### `app.js`
+#### `reducers.js`
 
 ```bash
-...
+import { combineReducers } from 'redux';
 import AwaitControl from 'react-redux-await-control';
-...
 
-const store = createStore(
-  AwaitControl.init().mix(reducers),
-  applyMiddleware(sagaMiddleware),
-);
+import authReducer from './auth';
+import todoReducer from './todo';
+
+const reducers = AwaitControl.init().mix({
+  authReducer,
+  todoReducer,
+});
+
+export default combineReducers({ ...reducers });
 ```
 
 #### `action.js`
