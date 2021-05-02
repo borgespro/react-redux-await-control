@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.7.1
+
+### Patch Changes
+
+- 28a8875: Fix AwaitControl - Exposing mix method.
+
 ## 0.7.0
 
 ### Minor Changes
