@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.7.2
+
+### Patch Changes
+
+- 55b7a59: Fix await control hook.
+
 ## 0.7.1
 
 ### Patch Changes
