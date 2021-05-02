@@ -23,10 +23,10 @@ export type AwaitControlInitializer = {
 };
 
 export type AwaitControlHook = {
-  start: () => Action<any>;
-  success: () => Action<any>;
-  cancel: () => Action<any>;
-  failure: () => Action<any>;
+  start: (payload?: any, meta?: any) => ActionMeta<any, any>;
+  success: (payload?: any, meta?: any) => ActionMeta<any, any>;
+  cancel: (payload?: any, meta?: any) => ActionMeta<any, any>;
+  failure: (payload?: any, meta?: any) => ActionMeta<any, any>;
   isRunning: (actionId?: string | number) => TypedUseSelectorHook<any>;
   isCancelled: (actionId?: string | number) => TypedUseSelectorHook<any>;
   hasFailure: (actionId?: string | number) => TypedUseSelectorHook<any>;
