@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.7.5
+
+### Patch Changes
+
+- 1cce21e: Using BaseAction as pattern for Action return in the fuctions or methods.
+
 ## 0.7.4
 
 ### Patch Changes
