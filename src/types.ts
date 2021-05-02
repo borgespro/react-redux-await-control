@@ -6,10 +6,10 @@ export type AsyncActionState = 'START' | 'SUCCESS' | 'FAILURE' | 'CANCEL';
 export type BaseAction = Action<any> | ActionMeta<any, any>;
 
 export type AsyncBaseActionControl = {
-  start: ActionFunctionAny<Action<any>>;
-  success: ActionFunctionAny<Action<any>>;
-  failure: ActionFunctionAny<Action<any>>;
-  cancel: ActionFunctionAny<Action<any>>;
+  start: ActionFunctionAny<ActionMeta<any, any>>;
+  success: ActionFunctionAny<ActionMeta<any, any>>;
+  failure: ActionFunctionAny<ActionMeta<any, any>>;
+  cancel: ActionFunctionAny<ActionMeta<any, any>>;
 };
 
 export type AsyncActionReducer = {

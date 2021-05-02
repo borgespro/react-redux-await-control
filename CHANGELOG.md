@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.7.3
+
+### Patch Changes
+
+- 8309c5c: Fixing the exposition of the await control hook
+
 ## 0.7.2
 
 ### Patch Changes
