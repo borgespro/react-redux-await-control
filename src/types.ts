@@ -6,10 +6,10 @@ export type AsyncActionState = 'START' | 'SUCCESS' | 'FAILURE' | 'CANCEL';
 export type BaseAction = Action<any> | ActionMeta<any, any>;
 
 export type AsyncBaseActionControl = {
-  start: ActionFunctionAny<ActionMeta<any, any>>;
-  success: ActionFunctionAny<ActionMeta<any, any>>;
-  failure: ActionFunctionAny<ActionMeta<any, any>>;
-  cancel: ActionFunctionAny<ActionMeta<any, any>>;
+  start: ActionFunctionAny<BaseAction>;
+  success: ActionFunctionAny<BaseAction>;
+  failure: ActionFunctionAny<BaseAction>;
+  cancel: ActionFunctionAny<BaseAction>;
 };
 
 export type AsyncActionReducer = {
@@ -23,10 +23,10 @@ export type AwaitControlInitializer = {
 };
 
 export type AwaitControlHook = {
-  start: (payload?: any, meta?: any) => ActionMeta<any, any>;
-  success: (payload?: any, meta?: any) => ActionMeta<any, any>;
-  cancel: (payload?: any, meta?: any) => ActionMeta<any, any>;
-  failure: (payload?: any, meta?: any) => ActionMeta<any, any>;
+  start: (payload?: any, meta?: any) => BaseAction;
+  success: (payload?: any, meta?: any) => BaseAction;
+  cancel: (payload?: any, meta?: any) => BaseAction;
+  failure: (payload?: any, meta?: any) => BaseAction;
   isRunning: (actionId?: string | number) => TypedUseSelectorHook<any>;
   isCancelled: (actionId?: string | number) => TypedUseSelectorHook<any>;
   hasFailure: (actionId?: string | number) => TypedUseSelectorHook<any>;

@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.7.4
+
+### Patch Changes
+
+- 83c54bd: Fix the exposition of types in project.
+
 ## 0.7.3
 
 ### Patch Changes
