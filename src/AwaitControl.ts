@@ -30,7 +30,7 @@ export default class AwaitControl {
 
   private constructor() {}
 
-  mix<S>(reducers: ReducersMapObject<S, any>): ReducersMapObject<S, any> {
+  public mix<S>(reducers: ReducersMapObject<S, any>): ReducersMapObject<S, any> {
     if (reducers[this.keyReducer]) {
       throw new Error(`keyReducer: ${this.keyReducer} is already in use.`);
     }

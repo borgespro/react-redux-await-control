@@ -14,7 +14,7 @@ select opt in "${options[@]}"
 do
     case $opt in
         "yes")
-            yanr changeset
+            yarn changeset
             git add .changeset/*
             exit 0
             ;;
