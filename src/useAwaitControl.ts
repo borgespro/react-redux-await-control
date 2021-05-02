@@ -6,10 +6,10 @@ import { AwaitControlHook } from './types';
 export default function useAwaitControl(asyncAction: AsyncActionControl): AwaitControlHook {
   const dispatch = useDispatch();
 
-  const start = () => dispatch(asyncAction.start());
-  const success = () => dispatch(asyncAction.success());
-  const cancel = () => dispatch(asyncAction.cancel());
-  const failure = () => dispatch(asyncAction.failure());
+  const start = (payload?: any, meta?: any) => dispatch(asyncAction.start(payload, meta));
+  const success = (payload?: any, meta?: any) => dispatch(asyncAction.success(payload, meta));
+  const cancel = (payload?: any, meta?: any) => dispatch(asyncAction.cancel(payload, meta));
+  const failure = (payload?: any, meta?: any) => dispatch(asyncAction.failure(payload, meta));
 
   const isRunning = (actionId?: string | number) => useSelector(asyncAction.isRunning(actionId));
   const isCancelled = (actionId?: string | number) => useSelector(asyncAction.isCancelled(actionId));
