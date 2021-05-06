@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.8.0
+
+### Minor Changes
+
+- f8e5e35: Adding funtionality to clear mapped action of the control reducer
+
 ## 0.7.5
 
 ### Patch Changes
