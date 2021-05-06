@@ -10,6 +10,7 @@ export type AsyncBaseActionControl = {
   success: ActionFunctionAny<BaseAction>;
   failure: ActionFunctionAny<BaseAction>;
   cancel: ActionFunctionAny<BaseAction>;
+  clear: ActionFunctionAny<BaseAction>;
 };
 
 export type AsyncActionReducer = {
@@ -27,6 +28,7 @@ export type AwaitControlHook = {
   success: (payload?: any, meta?: any) => BaseAction;
   cancel: (payload?: any, meta?: any) => BaseAction;
   failure: (payload?: any, meta?: any) => BaseAction;
+  clear: (payload?: any, meta?: any) => BaseAction;
   isRunning: (actionId?: string | number) => TypedUseSelectorHook<any>;
   isCancelled: (actionId?: string | number) => TypedUseSelectorHook<any>;
   hasFailure: (actionId?: string | number) => TypedUseSelectorHook<any>;

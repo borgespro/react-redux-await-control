@@ -44,6 +44,7 @@ describe('Testing createAsyncAction.', () => {
     expect(actions.failure).toBeDefined();
     expect(actions.cancel).toBeDefined();
     expect(actions.success).toBeDefined();
+    expect(actions.clear).toBeDefined();
   });
 
   it('Create LOAD_DATA as async action passing prefix.', () => {

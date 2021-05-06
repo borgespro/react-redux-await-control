@@ -1,4 +1,4 @@
-import { ActionFunctionAny, ActionMeta } from 'redux-actions';
+import { ActionFunctionAny } from 'redux-actions';
 
 import AwaitControl from './AwaitControl';
 import { AsyncBaseActionControl, BaseAction, Selector } from './types';
@@ -15,6 +15,8 @@ export default class AsyncActionControl {
   failure: ActionFunctionAny<BaseAction>;
 
   cancel: ActionFunctionAny<BaseAction>;
+
+  clear: ActionFunctionAny<BaseAction>;
 
   getKey(actionId?: string | number): string {
     if (actionId) {
@@ -51,5 +53,6 @@ export default class AsyncActionControl {
     this.success = stateActions.success;
     this.failure = stateActions.failure;
     this.cancel = stateActions.cancel;
+    this.clear = stateActions.clear;
   }
 }
