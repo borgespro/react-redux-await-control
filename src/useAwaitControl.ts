@@ -10,6 +10,7 @@ export default function useAwaitControl(asyncAction: AsyncActionControl): AwaitC
   const success = (payload?: any, meta?: any) => dispatch(asyncAction.success(payload, meta));
   const cancel = (payload?: any, meta?: any) => dispatch(asyncAction.cancel(payload, meta));
   const failure = (payload?: any, meta?: any) => dispatch(asyncAction.failure(payload, meta));
+  const clear = (meta?: any) => dispatch(asyncAction.clear(null, meta));
 
   const isRunning = (actionId?: string | number) => useSelector(asyncAction.isRunning(actionId));
   const isCancelled = (actionId?: string | number) => useSelector(asyncAction.isCancelled(actionId));
@@ -21,6 +22,7 @@ export default function useAwaitControl(asyncAction: AsyncActionControl): AwaitC
     success,
     cancel,
     failure,
+    clear,
     isRunning,
     isCancelled,
     hasFailure,

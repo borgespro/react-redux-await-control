@@ -2,7 +2,7 @@ import { createActions } from 'redux-actions';
 
 import AsyncActionControl from './AsyncActionControl';
 import { camelCase } from './utils';
-import { PREFIX, CANCEL, FAILURE, START, SUCCESS, STATUS_LIST } from './constants';
+import { PREFIX, CANCEL, FAILURE, START, SUCCESS, STATUS_LIST, CLEAR } from './constants';
 
 export default function createAsyncAction<Payload, Meta = never>(
   actionName: string,
@@ -25,6 +25,7 @@ export default function createAsyncAction<Payload, Meta = never>(
     [asyncLabelsMapper[SUCCESS].label]: success,
     [asyncLabelsMapper[FAILURE].label]: failure,
     [asyncLabelsMapper[CANCEL].label]: cancel,
+    [asyncLabelsMapper[CLEAR].label]: clear,
   } = createActions(asyncActionsMapper, { prefix: prefix || PREFIX });
 
   const actionLabel = `${prefix || PREFIX}/${actionName}`;
@@ -34,5 +35,6 @@ export default function createAsyncAction<Payload, Meta = never>(
     success,
     failure,
     cancel,
+    clear,
   });
 }

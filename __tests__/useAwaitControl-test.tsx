@@ -29,6 +29,7 @@ describe('Testing useAwaitControl', () => {
     expect(control.success).toBeDefined();
     expect(control.cancel).toBeDefined();
     expect(control.failure).toBeDefined();
+    expect(control.clear).toBeDefined();
     expect(control.isRunning).toBeDefined();
     expect(control.isCancelled).toBeDefined();
     expect(control.hasFailure).toBeDefined();

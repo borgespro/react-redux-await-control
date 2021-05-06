@@ -31,5 +31,12 @@ describe('Testing AsyncActionControl', () => {
     store.dispatch(asyncAction.start());
     store.dispatch(asyncAction.failure());
     expect(asyncAction.getStateValue(store.getState())).toEqual('FAILURE');
+    store.dispatch(asyncAction.start());
+    store.dispatch(asyncAction.clear());
+    expect(asyncAction.getStateValue(store.getState())).toEqual(undefined);
+    store.dispatch(asyncAction.start());
+    store.dispatch(asyncAction.success());
+    store.dispatch(asyncAction.clear());
+    expect(asyncAction.getStateValue(store.getState())).toEqual(undefined);
   });
 });
