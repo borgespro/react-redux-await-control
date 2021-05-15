@@ -76,6 +76,51 @@ export default function Component() {
 
 ```
 
+## API Reference
+
+### AwaitControl
+
+| Method     | Parameters                       | Return Type       | Description                                                                       |
+| ---------- | -------------------------------- | ----------------- | --------------------------------------------------------------------------------- |
+| init       | config?: AwaitControlInitializer | AwaitControl      | Initialize the library                                                            |
+| getControl | -                                | AwaitControl      | Get the AwaitControl single object                                                |
+| mix        | reducers: ReducersMapObject      | ReducersMapObject | combines the reducers of the project with the reducer that belongs to the library |
+
+#### AwaitControlInitializer
+
+| Property   | Type   | Description                   |
+| ---------- | ------ | ----------------------------- |
+| keyReducer | String | Change the default keyReducer |
+
+### AsyncActionControl
+
+| Method  | Parameters | Return Type | Description |
+| ------- | ---------- | ----------- | ----------- |
+| start   |            |             |             |
+| cancel  |            |             |             |
+| success |            |             |             |
+| failure |            |             |             |
+| clear   |            |             |             |
+
+| Property | Type | Description |
+| -------- | ---- | ----------- |
+| label    |      |             |
+| rawKey   |      |             |
+
+### AwaitControlHook
+
+| Method       | Parameters | Return Type | Description |
+| ------------ | ---------- | ----------- | ----------- |
+| start        |            |             |             |
+| cancel       |            |             |             |
+| success      |            |             |             |
+| failure      |            |             |             |
+| clear        |            |             |             |
+| isRunning    |            |             |             |
+| isCancelled  |            |             |             |
+| hasFailure   |            |             |             |
+| isSuccessful |            |             |             |
+
 ## License
 
 [MIT](LICENSE)
