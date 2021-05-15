@@ -72,19 +72,21 @@ export default function Component() {
 
 ```
 
-## Reference API
+## API Reference
 
 ### AwaitControl
 
-| Method     | Parameters | Return Type | Description |
-| ---------- | ---------- | ----------- | ----------- |
-| init       |            |             |             |
-| getControl |            |             |             |
-| mix        |            |             |             |
+| Method     | Parameters                       | Return Type       | Description                                                                       |
+| ---------- | -------------------------------- | ----------------- | --------------------------------------------------------------------------------- |
+| init       | config?: AwaitControlInitializer | AwaitControl      | Initialize the library                                                            |
+| getControl | -                                | AwaitControl      | Get the AwaitControl single object                                                |
+| mix        | reducers: ReducersMapObject      | ReducersMapObject | combines the reducers of the project with the reducer that belongs to the library |
 
-| Property   | Type | Description |
-| ---------- | ---- | ----------- |
-| keyReducer |      |             |
+#### AwaitControlInitializer
+
+| Property   | Type   | Description                   |
+| ---------- | ------ | ----------------------------- |
+| keyReducer | String | Change the default keyReducer |
 
 ### AsyncActionControl
 
@@ -94,6 +96,7 @@ export default function Component() {
 | cancel  |            |             |             |
 | success |            |             |             |
 | failure |            |             |             |
+| clear   |            |             |             |
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
@@ -108,6 +111,7 @@ export default function Component() {
 | cancel       |            |             |             |
 | success      |            |             |             |
 | failure      |            |             |             |
+| clear        |            |             |             |
 | isRunning    |            |             |             |
 | isCancelled  |            |             |             |
 | hasFailure   |            |             |             |
