@@ -29,7 +29,7 @@ describe('Testing integration with redux', () => {
       expect(removeTodoAction.isRunning(1)(store.getState())).toEqual(true);
     });
 
-    it('create user case with fetch result success.', () => {
+    it('create use case with fetch result success.', () => {
       store.dispatch(fetchTodosAction.success());
       expect(store.getState().control[fetchTodosActionName]).toEqual('SUCCESS');
       store.dispatch(removeTodoAction.success(true, meta));
@@ -39,7 +39,7 @@ describe('Testing integration with redux', () => {
       expect(removeTodoAction.isSuccessful(1)(store.getState())).toEqual(true);
     });
 
-    it('create user case with fetch result cancel.', () => {
+    it('create use case with fetch result cancel.', () => {
       store.dispatch(fetchTodosAction.cancel());
       expect(store.getState().control[fetchTodosActionName]).toEqual('CANCEL');
       store.dispatch(removeTodoAction.cancel(meta));
@@ -49,7 +49,7 @@ describe('Testing integration with redux', () => {
       expect(removeTodoAction.isCancelled(1)(store.getState())).toEqual(true);
     });
 
-    it('create user case with fetch result failure.', () => {
+    it('create use case with fetch result failure.', () => {
       store.dispatch(fetchTodosAction.failure(new Error()));
       expect(store.getState().control[fetchTodosActionName]).toEqual('FAILURE');
       store.dispatch(removeTodoAction.failure(new Error(), meta));
@@ -57,6 +57,16 @@ describe('Testing integration with redux', () => {
       expect(fetchTodosAction.hasFailure()(store.getState())).toBe(true);
       expect(removeTodoAction.hasFailure()(store.getState())).toEqual(false);
       expect(removeTodoAction.hasFailure(1)(store.getState())).toEqual(true);
+    });
+
+    it('create use case for calling clear action.', () => {
+      expect(store.getState().control[fetchTodosActionName]).toEqual('START');
+      store.dispatch(fetchTodosAction.clear());
+      expect(store.getState().control[fetchTodosActionName]).toBeUndefined();
+      store.dispatch(fetchTodosAction.success());
+      expect(store.getState().control[fetchTodosActionName]).toBeUndefined();
+      store.dispatch(fetchTodosAction.failure());
+      expect(store.getState().control[fetchTodosActionName]).toBeUndefined();
     });
   });
 

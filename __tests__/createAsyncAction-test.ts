@@ -36,6 +36,13 @@ describe('Testing createAsyncAction.', () => {
     expect(payload).toEqual(true);
   });
 
+  it('Validate clear of asyncAction', () => {
+    const { type, payload, error } = asyncAction.clear();
+    expect(type).toEqual('ASYNC_ACTION/GET_DATA_CLEAR');
+    expect(error).toBeFalsy();
+    expect(payload).toBeUndefined();
+  });
+
   it('Create LOAD_DATA as async action.', () => {
     const actionName = 'LOAD_DATA';
     const actions = createAsyncAction(actionName);

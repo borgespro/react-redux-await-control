@@ -95,4 +95,22 @@ describe('Testing useAwaitControl', () => {
 
     expect(fetchTodosAction.hasFailure()(store.getState())).toBe(true);
   });
+
+  it('validate clear', () => {
+    renderHookWrapper(() => {
+      const fetchTodosControl = useAwaitControl(fetchTodosAction);
+      fetchTodosControl.start();
+      fetchTodosControl.clear();
+    });
+
+    expect(fetchTodosAction.isRunning()(store.getState())).toBe(false);
+
+    renderHookWrapper(() => {
+      const fetchTodosControl = useAwaitControl(fetchTodosAction);
+      fetchTodosControl.start();
+      fetchTodosControl.clear();
+    });
+
+    expect(fetchTodosAction.isRunning()(store.getState())).toBe(false);
+  });
 });
