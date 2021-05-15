@@ -8,7 +8,8 @@ fi
 yarn test
 yarn lint-staged
 
-PS3='Confirm system suspension [y]/n: '
+echo 'Do you want to version this update?'
+PS3='Answer: '
 TMOUT=10
 
 do_suspend=true
@@ -20,42 +21,33 @@ while true; do
         fi
 
         case $REPLY in
-                [yY]*)
-                        # default case
+                "yes")
+                        yarn changeset
+                        git add .changeset/*
                         break ;;
-                [nN]*)
+                "no")
                         do_suspend=false
                         break ;;
                 *)
-                        echo 'Sorry, try again' >&2
+                        echo "invalid option $REPLY";;
         esac
 done
 
 
-echo 'Do you want to version this update?'
 
-pid=$$
+#echo 'Do you want to version this update?'
+#PS3='Answer: '
+#options=("yes" "no")
+#
+#select opt in "${options[@]}"
+#while true; do
+#    case $opt in
+#        "yes")
 
-(
-  sleep 1m
-  echo "Timed out after 60 seconds"
-  kill -- -$pid &>/dev/null
-) &
-
-PS3='Answer: '
-options=("yes" "no")
-select opt in "${options[@]}"
-do
-    case $opt in
-        "yes")
-            yarn changeset
-            git add .changeset/*
-            exit 0
-            ;;
-        "no")
-            exit 0
-            ;;
-        *) echo "invalid option $REPLY";;
-    esac
-done
-exit 0
+#        "no")
+#            exit 0
+#            ;;
+#        *) echo "invalid option $REPLY";;
+#    esac
+#done
+#exit 0
