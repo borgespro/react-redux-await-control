@@ -7,21 +7,47 @@ fi
 
 yarn test
 yarn lint-staged
+
 echo 'Do you want to version this update?'
 PS3='Answer: '
-options=("yes" "no")
-select opt in "${options[@]}"
-do
-    case $opt in
-        "yes")
-            yarn changeset
-            git add .changeset/*
-            exit 0
-            ;;
-        "no")
-            exit 0
-            ;;
-        *) echo "invalid option $REPLY";;
-    esac
+TMOUT=10
+
+do_suspend=true
+
+while true; do
+        if ! read -p "$PS3"; then
+                # timeout
+                break
+        fi
+
+        case $REPLY in
+                "yes")
+                        yarn changeset
+                        git add .changeset/*
+                        break ;;
+                "no")
+                        do_suspend=false
+                        break ;;
+                *)
+                        echo "invalid option $REPLY";;
+        esac
 done
-exit 0
+
+
+
+#echo 'Do you want to version this update?'
+#PS3='Answer: '
+#options=("yes" "no")
+#
+#select opt in "${options[@]}"
+#while true; do
+#    case $opt in
+#        "yes")
+
+#        "no")
+#            exit 0
+#            ;;
+#        *) echo "invalid option $REPLY";;
+#    esac
+#done
+#exit 0
