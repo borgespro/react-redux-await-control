@@ -7,41 +7,7 @@ fi
 
 yarn test
 yarn lint-staged
-
-PS3='Confirm system suspension [y]/n: '
-TMOUT=10
-
-do_suspend=true
-
-while true; do
-        if ! read -p "$PS3"; then
-                # timeout
-                break
-        fi
-
-        case $REPLY in
-                [yY]*)
-                        # default case
-                        break ;;
-                [nN]*)
-                        do_suspend=false
-                        break ;;
-                *)
-                        echo 'Sorry, try again' >&2
-        esac
-done
-
-
 echo 'Do you want to version this update?'
-
-pid=$$
-
-(
-  sleep 1m
-  echo "Timed out after 60 seconds"
-  kill -- -$pid &>/dev/null
-) &
-
 PS3='Answer: '
 options=("yes" "no")
 select opt in "${options[@]}"
