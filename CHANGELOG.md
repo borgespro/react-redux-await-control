@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.9.1
+
+### Patch Changes
+
+- 22fc3d9: Fixing AsyncActionReducer type and one test for reducer
+
 ## 0.9.0
 
 ### Minor Changes
