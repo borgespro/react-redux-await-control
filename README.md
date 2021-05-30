@@ -52,8 +52,6 @@ import { listTodos } from '../store/action';
 import { getTodos } from '../store/selectors';
 
 export default function Component() {
-  const todos = useSelector(getTodos);
-
   const listTodosControl = useAwaitControl(listTodos);
 
   useEffect(() => {
@@ -65,10 +63,16 @@ export default function Component() {
     return <Loading />;
   }
 
+  if (listTodosControl.hasFailure()) {
+    return <Error />;
+  }
+
   return (
     <List>
        {
-          todos.map(todo => <Item key={todo.id} data={todo} />)
+          listTodosControl.result().map(
+            todo => <Item key={todo.id} data={todo} />
+          )
        }
     </List>
   );
@@ -116,6 +120,7 @@ export default function Component() {
 | success      |            |             |             |
 | failure      |            |             |             |
 | clear        |            |             |             |
+| result       |            |             |             |
 | isRunning    |            |             |             |
 | isCancelled  |            |             |             |
 | hasFailure   |            |             |             |

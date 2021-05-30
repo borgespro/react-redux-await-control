@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.9.0
+
+### Minor Changes
+
+- b9683d7: It was added storing result data(failure and success) for async actions.
+
 ## 0.8.0
 
 ### Minor Changes
