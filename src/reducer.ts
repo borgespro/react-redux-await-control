@@ -1,7 +1,11 @@
 import { ActionMeta } from 'redux-actions';
 
-import { AsyncActionReducer, AsyncActionState, BaseAction } from './types';
-import { CANCEL, CLEAR, FAILURE, START, SUCCESS } from './constants';
+import {
+  AsyncActionReducer, AsyncActionState, BaseAction,
+} from './types';
+import {
+  CANCEL, CLEAR, FAILURE, START, SUCCESS,
+} from './constants';
 
 const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<any, any>) => {
   const actionPayloadMeta: any = {};
@@ -21,7 +25,8 @@ const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<an
   return requestName;
 };
 
-export default function reducer(state: AsyncActionReducer = {}, action: BaseAction): AsyncActionReducer {
+export default function reducer(state: AsyncActionReducer = {}, action: BaseAction):
+  AsyncActionReducer {
   const { type, payload } = action;
   const matches = /(.*)\/(.*)_(START|SUCCESS|FAILURE|CANCEL|CLEAR)/.exec(type);
 
@@ -39,9 +44,9 @@ export default function reducer(state: AsyncActionReducer = {}, action: BaseActi
   const resultStatus = [SUCCESS, FAILURE];
 
   if (
-    state[formattedRequestName] &&
-    state[formattedRequestName][0] === START &&
-    [...resultStatus, CANCEL].includes(requestState)
+    state[formattedRequestName]
+    && state[formattedRequestName][0] === START
+    && [...resultStatus, CANCEL].includes(requestState)
   ) {
     return {
       ...state,
