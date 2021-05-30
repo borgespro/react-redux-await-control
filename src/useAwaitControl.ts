@@ -17,6 +17,8 @@ export default function useAwaitControl(asyncAction: AsyncActionControl): AwaitC
   const hasFailure = (actionId?: string | number) => useSelector(asyncAction.hasFailure(actionId));
   const isSuccessful = (actionId?: string | number) => useSelector(asyncAction.isSuccessful(actionId));
 
+  const result = (actionId?: string | number) => useSelector(asyncAction.getResult(actionId));
+
   return {
     start,
     success,
@@ -27,5 +29,6 @@ export default function useAwaitControl(asyncAction: AsyncActionControl): AwaitC
     isCancelled,
     hasFailure,
     isSuccessful,
+    result,
   };
 }

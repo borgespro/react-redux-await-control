@@ -11,41 +11,46 @@ const mockAction = (suffix: string): BaseAction => ({
 describe('Testing reducer.', () => {
   it('Testing START action', () => {
     const stateAfter = reducer({}, mockAction('START'));
-    expect(stateAfter[MOCK_ACTION]).toBeDefined();
-    expect(stateAfter[MOCK_ACTION]).toEqual('START');
+    expect(stateAfter[MOCK_ACTION][0]).toBeDefined();
+    expect(stateAfter[MOCK_ACTION][0]).toEqual('START');
   });
 
   it('Testing SUCCESS action', () => {
     const stateAfter1 = reducer({}, mockAction('SUCCESS'));
     expect(stateAfter1[MOCK_ACTION]).toBeUndefined();
-    const stateAfter2 = reducer({ [MOCK_ACTION]: 'START' }, mockAction('SUCCESS'));
-    expect(stateAfter2[MOCK_ACTION]).toBeDefined();
-    expect(stateAfter2[MOCK_ACTION]).toEqual('SUCCESS');
-    const stateAfter3 = reducer({ [MOCK_ACTION]: 'CANCEL' }, mockAction('SUCCESS'));
-    expect(stateAfter3[MOCK_ACTION]).toBeDefined();
-    expect(stateAfter3[MOCK_ACTION]).toEqual('CANCEL');
+    const stateAfter2 = reducer({ [MOCK_ACTION]: ['START'] }, mockAction('SUCCESS'));
+    expect(stateAfter2[MOCK_ACTION][0]).toBeDefined();
+    expect(stateAfter2[MOCK_ACTION][0]).toEqual('SUCCESS');
+    expect(stateAfter2[MOCK_ACTION][1]).toEqual(true);
+    const stateAfter3 = reducer({ [MOCK_ACTION]: ['CANCEL'] }, mockAction('SUCCESS'));
+    expect(stateAfter3[MOCK_ACTION][0]).toBeDefined();
+    expect(stateAfter3[MOCK_ACTION][0]).toEqual('CANCEL');
+    expect(stateAfter3[MOCK_ACTION][1]).toBeUndefined();
   });
 
   it('Testing CANCEL action', () => {
     const stateAfter1 = reducer({}, mockAction('CANCEL'));
     expect(stateAfter1[MOCK_ACTION]).toBeUndefined();
-    const stateAfter2 = reducer({ [MOCK_ACTION]: 'START' }, mockAction('CANCEL'));
-    expect(stateAfter2[MOCK_ACTION]).toBeDefined();
-    expect(stateAfter2[MOCK_ACTION]).toEqual('CANCEL');
-    const stateAfter3 = reducer({ [MOCK_ACTION]: 'SUCCESS' }, mockAction('CANCEL'));
-    expect(stateAfter3[MOCK_ACTION]).toBeDefined();
-    expect(stateAfter3[MOCK_ACTION]).toEqual('SUCCESS');
+    const stateAfter2 = reducer({ [MOCK_ACTION]: ['START'] }, mockAction('CANCEL'));
+    expect(stateAfter2[MOCK_ACTION][0]).toBeDefined();
+    expect(stateAfter2[MOCK_ACTION][0]).toEqual('CANCEL');
+    expect(stateAfter2[MOCK_ACTION][1]).toBeUndefined();
+    const stateAfter3 = reducer({ [MOCK_ACTION]: ['SUCCESS'] }, mockAction('CANCEL'));
+    expect(stateAfter3[MOCK_ACTION][0]).toBeDefined();
+    expect(stateAfter3[MOCK_ACTION][0]).toEqual('SUCCESS');
   });
 
   it('Testing FAILURE action', () => {
     const stateAfter1 = reducer({}, mockAction('FAILURE'));
     expect(stateAfter1[MOCK_ACTION]).toBeUndefined();
-    const stateAfter2 = reducer({ [MOCK_ACTION]: 'START' }, mockAction('FAILURE'));
-    expect(stateAfter2[MOCK_ACTION]).toBeDefined();
-    expect(stateAfter2[MOCK_ACTION]).toEqual('FAILURE');
-    const stateAfter3 = reducer({ [MOCK_ACTION]: 'SUCCESS' }, mockAction('FAILURE'));
-    expect(stateAfter3[MOCK_ACTION]).toBeDefined();
-    expect(stateAfter3[MOCK_ACTION]).toEqual('SUCCESS');
+    const stateAfter2 = reducer({ [MOCK_ACTION]: ['START'] }, mockAction('FAILURE'));
+    expect(stateAfter2[MOCK_ACTION][0]).toBeDefined();
+    expect(stateAfter2[MOCK_ACTION][0]).toEqual('FAILURE');
+    expect(stateAfter2[MOCK_ACTION][1]).toEqual(true);
+    const stateAfter3 = reducer({ [MOCK_ACTION]: ['SUCCESS'] }, mockAction('FAILURE'));
+    expect(stateAfter3[MOCK_ACTION][0]).toBeDefined();
+    expect(stateAfter3[MOCK_ACTION][0]).toEqual('SUCCESS');
+    expect(stateAfter3[MOCK_ACTION][1]).toBeUndefined();
   });
 
   it('Testing CLEAR action', () => {
