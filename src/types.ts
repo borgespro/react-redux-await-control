@@ -14,7 +14,7 @@ export type AsyncBaseActionControl = {
 };
 
 export type AsyncActionReducer = {
-  [actionName: string]: [AsyncActionState, any];
+  [actionName: string]: [AsyncActionState, any] | [AsyncActionState];
 };
 
 export type Selector = (state: any) => any;

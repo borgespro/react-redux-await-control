@@ -54,7 +54,7 @@ describe('Testing reducer.', () => {
   });
 
   it('Testing CLEAR action', () => {
-    const stateAfter = reducer({ [MOCK_ACTION]: 'START' }, mockAction('CLEAR'));
+    const stateAfter = reducer({ [MOCK_ACTION]: ['START'] }, mockAction('CLEAR'));
     expect(stateAfter[MOCK_ACTION]).toBeUndefined();
   });
 
