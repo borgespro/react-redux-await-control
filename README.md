@@ -49,7 +49,6 @@ import React, { useEffect } from 'react';
 import { useAwaitControl } from 'react-redux-await-control';
 ...
 import { listTodos } from '../store/action';
-import { getTodos } from '../store/selectors';
 
 export default function Component() {
   const listTodosControl = useAwaitControl(listTodos);
