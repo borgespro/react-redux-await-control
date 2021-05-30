@@ -14,7 +14,7 @@ export type AsyncBaseActionControl = {
 };
 
 export type AsyncActionReducer = {
-  [actionName: string]: AsyncActionState;
+  [actionName: string]: [AsyncActionState, any];
 };
 
 export type Selector = (state: any) => any;
@@ -33,4 +33,5 @@ export type AwaitControlHook = {
   isCancelled: (actionId?: string | number) => TypedUseSelectorHook<any>;
   hasFailure: (actionId?: string | number) => TypedUseSelectorHook<any>;
   isSuccessful: (actionId?: string | number) => TypedUseSelectorHook<any>;
+  result: (actionId?: string | number) => TypedUseSelectorHook<any>;
 };

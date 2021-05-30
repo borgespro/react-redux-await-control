@@ -39,4 +39,20 @@ describe('Testing AsyncActionControl', () => {
     store.dispatch(asyncAction.clear());
     expect(asyncAction.getStateValue(store.getState())).toEqual(undefined);
   });
+
+  it('getResultValue validation', () => {
+    const store = createTestStore();
+    AwaitControl.init({ keyReducer: 'control' });
+    store.dispatch(asyncAction.start());
+    expect(asyncAction.getStateValue(store.getState())).toEqual('START');
+    store.dispatch(asyncAction.success('OK'));
+    expect(asyncAction.getResultValue(store.getState())).toEqual('OK');
+    store.dispatch(asyncAction.start({ actionId: 999 }));
+    store.dispatch(asyncAction.success('OK', { actionId: 999 }));
+    expect(asyncAction.getResultValue(store.getState(), 999)).toEqual('OK');
+    store.dispatch(asyncAction.start());
+    const error = new Error();
+    store.dispatch(asyncAction.failure(error));
+    expect(asyncAction.getResultValue(store.getState())).toEqual(error);
+  });
 });

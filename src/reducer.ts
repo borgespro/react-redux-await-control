@@ -22,7 +22,8 @@ const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<an
 };
 
 export default function reducer(state: AsyncActionReducer = {}, action: BaseAction): AsyncActionReducer {
-  const matches = /(.*)\/(.*)_(START|SUCCESS|FAILURE|CANCEL|CLEAR)/.exec(action.type);
+  const { type, payload } = action;
+  const matches = /(.*)\/(.*)_(START|SUCCESS|FAILURE|CANCEL|CLEAR)/.exec(type);
 
   if (!matches) return state;
 
@@ -35,12 +36,24 @@ export default function reducer(state: AsyncActionReducer = {}, action: BaseActi
     return rest;
   }
 
-  if (state[formattedRequestName] === START && [SUCCESS, FAILURE, CANCEL].includes(requestState)) {
-    return { ...state, [formattedRequestName]: requestState as AsyncActionState };
+  const resultStatus = [SUCCESS, FAILURE];
+
+  if (
+    state[formattedRequestName] &&
+    state[formattedRequestName][0] === START &&
+    [...resultStatus, CANCEL].includes(requestState)
+  ) {
+    return {
+      ...state,
+      [formattedRequestName]: [
+        requestState as AsyncActionState,
+        resultStatus.includes(requestState) ? payload : undefined,
+      ],
+    };
   }
 
   if (requestState === START) {
-    return { ...state, [formattedRequestName]: START };
+    return { ...state, [formattedRequestName]: [START, payload] };
   }
 
   return state;

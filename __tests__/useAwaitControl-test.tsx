@@ -30,6 +30,7 @@ describe('Testing useAwaitControl', () => {
     expect(control.cancel).toBeDefined();
     expect(control.failure).toBeDefined();
     expect(control.clear).toBeDefined();
+    expect(control.result).toBeDefined();
     expect(control.isRunning).toBeDefined();
     expect(control.isCancelled).toBeDefined();
     expect(control.hasFailure).toBeDefined();
@@ -65,18 +66,20 @@ describe('Testing useAwaitControl', () => {
   it('validate success', () => {
     renderHookWrapper(() => {
       const fetchTodosControl = useAwaitControl(fetchTodosAction);
-      fetchTodosControl.success();
+      fetchTodosControl.success('OK');
     });
 
     expect(fetchTodosAction.isSuccessful()(store.getState())).toBe(false);
+    expect(fetchTodosAction.getResult()(store.getState())).toBeUndefined();
 
     renderHookWrapper(() => {
       const fetchTodosControl = useAwaitControl(fetchTodosAction);
       fetchTodosControl.start();
-      fetchTodosControl.success();
+      fetchTodosControl.success('OK');
     });
 
     expect(fetchTodosAction.isSuccessful()(store.getState())).toBe(true);
+    expect(fetchTodosAction.getResult()(store.getState())).toBe('OK');
   });
 
   it('validate failure', () => {
@@ -86,14 +89,16 @@ describe('Testing useAwaitControl', () => {
     });
 
     expect(fetchTodosAction.hasFailure()(store.getState())).toBe(false);
+    expect(fetchTodosAction.getResult()(store.getState())).toBeUndefined();
 
     renderHookWrapper(() => {
       const fetchTodosControl = useAwaitControl(fetchTodosAction);
       fetchTodosControl.start();
-      fetchTodosControl.failure();
+      fetchTodosControl.failure('ERROR');
     });
 
     expect(fetchTodosAction.hasFailure()(store.getState())).toBe(true);
+    expect(fetchTodosAction.getResult()(store.getState())).toBe('ERROR');
   });
 
   it('validate clear', () => {

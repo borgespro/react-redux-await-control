@@ -26,8 +26,23 @@ export default class AsyncActionControl {
     return this.rawKey;
   }
 
+  private getData(s, actionId?: string | number) {
+    const stored = s[AwaitControl.getControl().keyReducer][this.getKey(actionId)];
+
+    if (stored) {
+      const [state, resultData] = stored;
+      return { state, resultData };
+    }
+
+    return {};
+  }
+
   getStateValue(state, actionId?: string | number): string {
-    return state[AwaitControl.getControl().keyReducer][this.getKey(actionId)];
+    return this.getData(state, actionId).state;
+  }
+
+  getResultValue(state, actionId?: string | number): any {
+    return this.getData(state, actionId).resultData;
   }
 
   isRunning(actionId?: string | number): Selector {
@@ -44,6 +59,10 @@ export default class AsyncActionControl {
 
   isSuccessful(actionId?: string | number): Selector {
     return (state: any) => this.getStateValue(state, actionId) === 'SUCCESS';
+  }
+
+  getResult(actionId?: string | number): Selector {
+    return (state: any) => this.getResultValue(state, actionId);
   }
 
   constructor(label: string, rawKey: string, stateActions: AsyncBaseActionControl) {
