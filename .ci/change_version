@@ -1,0 +1,27 @@
+#!/bin/bash
+
+function change_version() {
+  echo 'Do you want to version this update?'
+  TMOUT=10
+  PS3='Answer: '
+  options=("yes" "no")
+  select opt in "${options[@]}"
+  do
+      case $opt in
+          "yes")
+              yarn changeset
+              git add .changeset/*
+              exit 0
+              ;;
+          "no")
+              exit 0
+              ;;
+          *) echo "invalid option $REPLY";;
+      esac
+  done
+  if [ -z "$opt" ] ; then
+    echo "default action"
+  fi
+}
+
+

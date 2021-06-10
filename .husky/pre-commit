@@ -7,21 +7,10 @@ fi
 
 yarn test
 yarn lint-staged
-echo 'Do you want to version this update?'
-PS3='Answer: '
-options=("yes" "no")
-select opt in "${options[@]}"
-do
-    case $opt in
-        "yes")
-            yarn changeset
-            git add .changeset/*
-            exit 0
-            ;;
-        "no")
-            exit 0
-            ;;
-        *) echo "invalid option $REPLY";;
-    esac
-done
-exit 0
+source $(dirname "$0")/../.ci/change_version
+change_version;
+exit 0;
+
+
+
+
