@@ -1,11 +1,7 @@
 import { ActionMeta } from 'redux-actions';
 
-import {
-  AsyncActionReducer, AsyncActionState, BaseAction,
-} from './types';
-import {
-  CANCEL, CLEAR, FAILURE, START, SUCCESS,
-} from './constants';
+import { AsyncActionReducer, AsyncActionReducerData, AsyncActionState, BaseAction } from './types';
+import { CANCEL, CLEAR, FAILURE, START, SUCCESS } from './constants';
 
 const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<any, any>) => {
   const actionPayloadMeta: any = {};
@@ -25,9 +21,8 @@ const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<an
   return requestName;
 };
 
-export default function reducer(state: AsyncActionReducer = {}, action: BaseAction):
-  AsyncActionReducer {
-  const { type, payload } = action;
+export default function reducer(state: AsyncActionReducer = {}, action: BaseAction): AsyncActionReducer {
+  const { type, payload, meta } = action as any;
   const matches = /(.*)\/(.*)_(START|SUCCESS|FAILURE|CANCEL|CLEAR)/.exec(type);
 
   if (!matches) return state;
@@ -44,17 +39,17 @@ export default function reducer(state: AsyncActionReducer = {}, action: BaseActi
   const resultStatus = [SUCCESS, FAILURE];
 
   if (
-    state[formattedRequestName]
-    && state[formattedRequestName][0] === START
-    && [...resultStatus, CANCEL].includes(requestState)
+    state[formattedRequestName] &&
+    state[formattedRequestName][0] === START &&
+    [...resultStatus, CANCEL].includes(requestState)
   ) {
-    return {
-      ...state,
-      [formattedRequestName]: [
-        requestState as AsyncActionState,
-        resultStatus.includes(requestState) ? payload : undefined,
-      ],
-    };
+    const storingData: AsyncActionReducerData = [requestState as AsyncActionState];
+
+    if (meta?.store) {
+      storingData.push(resultStatus.includes(requestState) ? payload : undefined);
+    }
+
+    return { ...state, [formattedRequestName]: storingData };
   }
 
   if (requestState === START) {
