@@ -2,7 +2,7 @@
 
 function change_version() {
   echo 'Do you want to version this update?'
-  TMOUT=10
+  TMOUT=120
   PS3='Answer: '
   options=("yes" "no")
   select opt in "${options[@]}"
@@ -20,7 +20,7 @@ function change_version() {
       esac
   done
   if [ -z "$opt" ] ; then
-    echo "default action"
+    echo "Time out!"
   fi
 }
 
