@@ -5,7 +5,7 @@ import createTestStore from './utils/createTestStore';
 describe('Testing integration with redux', () => {
   AwaitControl.init({ keyReducer: 'control' });
   const fetchTodosActionName = 'FETCH_TODOS';
-  const fetchTodosAction = createAsyncAction(fetchTodosActionName);
+  const fetchTodosAction = createAsyncAction(fetchTodosActionName, { saveResult: true });
   const removeTodoActionName = 'REMOVE_TODO';
   const removeTodoAction = createAsyncAction(removeTodoActionName);
 

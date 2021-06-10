@@ -13,8 +13,9 @@ export type AsyncBaseActionControl = {
   clear: ActionFunctionAny<BaseAction>;
 };
 
+export type AsyncActionReducerData = [AsyncActionState, any] | [AsyncActionState];
 export type AsyncActionReducer = {
-  [actionName: string]: [AsyncActionState, any] | [AsyncActionState];
+  [actionName: string]: AsyncActionReducerData;
 };
 
 export type Selector = (state: any) => any;

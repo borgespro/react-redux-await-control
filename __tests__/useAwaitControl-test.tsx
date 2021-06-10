@@ -9,7 +9,7 @@ describe('Testing useAwaitControl', () => {
   AwaitControl.init({ keyReducer: 'control' });
   let store;
   let control;
-  const fetchTodosAction = createAsyncAction('FETCH_TODOS');
+  const fetchTodosAction = createAsyncAction('FETCH_TODOS', { saveResult: true });
 
   const renderHookWrapper = (fn) => {
     renderHook(fn, { wrapper: (props) => <Provider {...props} store={store} /> });

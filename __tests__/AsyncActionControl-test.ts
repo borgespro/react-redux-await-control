@@ -3,7 +3,7 @@ import AwaitControl from '../src';
 import createTestStore from './utils/createTestStore';
 
 describe('Testing AsyncActionControl', () => {
-  const asyncAction = createAsyncAction('REMOVE_ITEM', 'TEXT_PREFIX');
+  const asyncAction = createAsyncAction('REMOVE_ITEM', { prefix: 'TEXT_PREFIX', saveResult: true });
 
   it('label validation', () => {
     expect(asyncAction.label).toEqual('TEXT_PREFIX/REMOVE_ITEM');

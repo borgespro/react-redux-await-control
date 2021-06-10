@@ -56,7 +56,7 @@ describe('Testing createAsyncAction.', () => {
 
   it('Create LOAD_DATA as async action passing prefix.', () => {
     const actionName = 'LOAD_DATA';
-    const actions = createAsyncAction(actionName, 'PREFIX_TEST');
+    const actions = createAsyncAction(actionName, { prefix: 'PREFIX_TEST' });
     expect(actions.label).toEqual(`PREFIX_TEST/${actionName}`);
     expect(actions.start).toBeDefined();
     expect(actions.failure).toBeDefined();
@@ -66,7 +66,7 @@ describe('Testing createAsyncAction.', () => {
 
   it('Create LOAD_DATA as async action passing empty prefix.', () => {
     const actionName = 'LOAD_DATA';
-    const actions = createAsyncAction(actionName, '');
+    const actions = createAsyncAction(actionName, { prefix: '' });
     expect(actions.label).toEqual(`ASYNC_ACTION/${actionName}`);
   });
 });
