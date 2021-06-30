@@ -1,9 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import AsyncActionControl from './AsyncActionControl';
 import { AwaitControlHook } from './types';
 
-export default function useAwaitControl(asyncAction: AsyncActionControl): AwaitControlHook {
+export default function useAwaitControl<TResult = any>(asyncAction: AsyncActionControl): AwaitControlHook {
   const dispatch = useDispatch();
 
   const start = (payload?: any, meta?: any) => dispatch(asyncAction.start(payload, meta));
@@ -12,12 +12,17 @@ export default function useAwaitControl(asyncAction: AsyncActionControl): AwaitC
   const failure = (payload?: any, meta?: any) => dispatch(asyncAction.failure(payload, meta));
   const clear = (meta?: any) => dispatch(asyncAction.clear(null, meta));
 
-  const isRunning = (actionId?: string | number) => useSelector(asyncAction.isRunning(actionId));
-  const isCancelled = (actionId?: string | number) => useSelector(asyncAction.isCancelled(actionId));
-  const hasFailure = (actionId?: string | number) => useSelector(asyncAction.hasFailure(actionId));
-  const isSuccessful = (actionId?: string | number) => useSelector(asyncAction.isSuccessful(actionId));
+  const isRunning = (actionId?: string | number) =>
+    useSelector<boolean>(asyncAction.isRunning(actionId)) as TypedUseSelectorHook<boolean>;
+  const isCancelled = (actionId?: string | number) =>
+    useSelector<boolean>(asyncAction.isCancelled(actionId)) as TypedUseSelectorHook<boolean>;
+  const hasFailure = (actionId?: string | number) =>
+    useSelector<boolean>(asyncAction.hasFailure(actionId)) as TypedUseSelectorHook<boolean>;
+  const isSuccessful = (actionId?: string | number) =>
+    useSelector<boolean>(asyncAction.isSuccessful(actionId)) as TypedUseSelectorHook<boolean>;
 
-  const result = (actionId?: string | number) => useSelector(asyncAction.getResult(actionId));
+  const result = (actionId?: string | number) =>
+    useSelector<TResult>(asyncAction.getResult(actionId)) as TypedUseSelectorHook<TResult>;
 
   return {
     start,
