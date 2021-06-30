@@ -21,7 +21,7 @@ jobs:
           always-auth: true
 
       - name: Install Dependencies
-        run: yarn install --verbose --prod --flat & yarn install --verbose --dev-dependencies
+        run: yarn install
 
       - name: Lint
         run: yarn lint-staged
