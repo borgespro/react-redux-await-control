@@ -30,9 +30,9 @@ export type AwaitControlHook = {
   cancel: (payload?: any, meta?: any) => BaseAction;
   failure: (payload?: any, meta?: any) => BaseAction;
   clear: (payload?: any, meta?: any) => BaseAction;
-  isRunning: (actionId?: string | number) => TypedUseSelectorHook<any>;
-  isCancelled: (actionId?: string | number) => TypedUseSelectorHook<any>;
-  hasFailure: (actionId?: string | number) => TypedUseSelectorHook<any>;
-  isSuccessful: (actionId?: string | number) => TypedUseSelectorHook<any>;
+  isRunning: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
+  isCancelled: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
+  hasFailure: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
+  isSuccessful: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
   result: (actionId?: string | number) => TypedUseSelectorHook<any>;
 };
