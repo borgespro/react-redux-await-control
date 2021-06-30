@@ -21,11 +21,11 @@
     "flux"
   ],
   "license": "MIT",
-  "dependencies": {
-    "react": "^16.8.0",
-    "react-redux": "^7.2.3",
-    "redux": "^4.0.5",
-    "redux-actions": "^2.6.5"
+  "peerDependencies": {
+    "react": "*",
+    "react-redux": "*",
+    "redux": "*",
+    "redux-actions": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
