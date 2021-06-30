@@ -1,5 +1,18 @@
 # react-redux-await-control
 
+## 0.10.0
+
+### Minor Changes
+
+- afbc570: Adding automatic save result in state as optional
+
+### Patch Changes
+
+- 796d892: Fixing dependencies
+- e34a2d9: Removing dependencies
+- e973501: Improving typings for useAwaitControl[Hook]
+- f2e0c14: Adding redux-actions as dependency
+
 ## 0.9.1
 
 ### Patch Changes
