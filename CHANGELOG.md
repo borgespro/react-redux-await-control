@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.10.1
+
+### Patch Changes
+
+- 20c8a83: Adding toString to actions =D
+
 ## 0.10.0
 
 ### Minor Changes
