@@ -1,7 +1,11 @@
 import { ActionMeta } from 'redux-actions';
 
-import { AsyncActionReducer, AsyncActionReducerData, AsyncActionState, BaseAction } from './types';
-import { CANCEL, CLEAR, FAILURE, START, SUCCESS } from './constants';
+import {
+ AsyncActionReducer, AsyncActionReducerData, AsyncActionState, BaseAction,
+} from './types';
+import {
+ CANCEL, CLEAR, FAILURE, START, SUCCESS,
+} from './constants';
 
 const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<any, any>) => {
   const actionPayloadMeta: any = {};
