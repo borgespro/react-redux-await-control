@@ -22,8 +22,8 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "redux-actions": "^2.6.5",
-    "react-redux": "*"
+    "react-redux": "*",
+    "redux-actions": "^2.6.5"
   },
   "peerDependencies": {
     "react": "*",
@@ -45,6 +45,7 @@
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jest": "^24.3.5",
     "eslint-plugin-jsx-a11y": "^6.4.1",
