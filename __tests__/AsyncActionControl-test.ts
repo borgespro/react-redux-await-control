@@ -9,6 +9,14 @@ describe('Testing AsyncActionControl', () => {
     expect(asyncAction.label).toEqual('TEXT_PREFIX/REMOVE_ITEM');
   });
 
+  it('toString validation', () => {
+    expect(asyncAction.start.toString()).toEqual('TEXT_PREFIX/REMOVE_ITEM_START');
+    expect(asyncAction.success.toString()).toEqual('TEXT_PREFIX/REMOVE_ITEM_SUCCESS');
+    expect(asyncAction.failure.toString()).toEqual('TEXT_PREFIX/REMOVE_ITEM_FAILURE');
+    expect(asyncAction.clear.toString()).toEqual('TEXT_PREFIX/REMOVE_ITEM_CLEAR');
+    expect(asyncAction.cancel.toString()).toEqual('TEXT_PREFIX/REMOVE_ITEM_CANCEL');
+  });
+
   it('getKey validation', () => {
     expect(asyncAction.getKey()).toEqual('REMOVE_ITEM');
     expect(asyncAction.getKey(999)).toEqual('REMOVE_ITEM_999');
