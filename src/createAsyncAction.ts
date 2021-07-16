@@ -2,7 +2,9 @@ import { createActions } from 'redux-actions';
 
 import AsyncActionControl from './AsyncActionControl';
 import { camelCase } from './utils';
-import { PREFIX, CANCEL, FAILURE, START, SUCCESS, STATUS_LIST, CLEAR } from './constants';
+import {
+ PREFIX, CANCEL, FAILURE, START, SUCCESS, STATUS_LIST, CLEAR,
+} from './constants';
 
 type ActionConfig = {
   prefix?: string;
@@ -17,19 +19,22 @@ export default function createAsyncAction<Payload, Meta = never>(
   const asyncActionsMapper = {};
   const asyncLabelsMapper = {};
 
+  const actionLabel = `${prefix}/${actionName}`;
+
   STATUS_LIST.forEach((status) => {
     const fetchActionName = `${actionName}_${status}`;
     asyncLabelsMapper[status] = { label: camelCase(fetchActionName) };
-    asyncActionsMapper[fetchActionName] = [
-      (payload: Payload): Payload => payload,
-      (payload: Payload, meta: Meta): Meta => {
-        if (meta && typeof meta !== 'object') {
-          throw new Error('Meta should be a object');
-        }
+    const actionPayload = (payload: Payload): Payload => payload;
+    const actionPayloadAndMeta = (payload: Payload, meta: Meta): Meta => {
+      if (meta && typeof meta !== 'object') {
+        throw new Error('Meta should be a object');
+      }
 
-        return { ...meta, store: !!config?.saveResult };
-      },
-    ];
+      return { ...meta, store: !!config?.saveResult };
+    };
+    actionPayload.toString = () => `${actionLabel}_${status}`
+    actionPayloadAndMeta.toString = () => `${actionLabel}_${status}`
+    asyncActionsMapper[fetchActionName] = [actionPayload, actionPayloadAndMeta];
   });
 
   const {
@@ -39,8 +44,6 @@ export default function createAsyncAction<Payload, Meta = never>(
     [asyncLabelsMapper[CANCEL].label]: cancel,
     [asyncLabelsMapper[CLEAR].label]: clear,
   } = createActions(asyncActionsMapper, { prefix });
-
-  const actionLabel = `${prefix}/${actionName}`;
 
   return new AsyncActionControl(actionLabel, actionName, {
     start,
