@@ -18,8 +18,8 @@ function createHook<TResult>(dispatch: Dispatch<any>, control: AsyncActionContro
 
   const isRunning = (actionId?: string | number) =>
     useSelector<boolean>(control.isRunning(actionId)) as TypedUseSelectorHook<boolean>;
-  const isCancelled = (actionId?: string | number) =>
-    useSelector<boolean>(control.isCancelled(actionId)) as TypedUseSelectorHook<boolean>;
+  const wasCancelled = (actionId?: string | number) =>
+    useSelector<boolean>(control.wasCancelled(actionId)) as TypedUseSelectorHook<boolean>;
   const hasFailure = (actionId?: string | number) =>
     useSelector<boolean>(control.hasFailure(actionId)) as TypedUseSelectorHook<boolean>;
   const isSuccessful = (actionId?: string | number) =>
@@ -35,7 +35,7 @@ function createHook<TResult>(dispatch: Dispatch<any>, control: AsyncActionContro
     failure,
     clear,
     isRunning,
-    isCancelled,
+    wasCancelled,
     hasFailure,
     isSuccessful,
     result,

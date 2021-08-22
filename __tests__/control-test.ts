@@ -44,9 +44,9 @@ describe('Testing integration with redux', () => {
       expect(store.getState().control[fetchTodosActionName][0]).toEqual('CANCEL');
       store.dispatch(removeTodoAction.cancel(meta));
       expect(store.getState().control[`${removeTodoActionName}_${meta.actionId}`][0]).toEqual('CANCEL');
-      expect(fetchTodosAction.isCancelled()(store.getState())).toBe(true);
-      expect(removeTodoAction.isCancelled()(store.getState())).toEqual(false);
-      expect(removeTodoAction.isCancelled(1)(store.getState())).toEqual(true);
+      expect(fetchTodosAction.wasCancelled()(store.getState())).toBe(true);
+      expect(removeTodoAction.wasCancelled()(store.getState())).toEqual(false);
+      expect(removeTodoAction.wasCancelled(1)(store.getState())).toEqual(true);
     });
 
     it('create use case with fetch result failure.', () => {
@@ -107,7 +107,7 @@ describe('Testing integration with redux', () => {
     it('trying set CANCEL in state.', () => {
       store.dispatch(fetchTodosAction.cancel());
       expect(store.getState().control[fetchTodosActionName]).toBeUndefined();
-      expect(removeTodoAction.isCancelled()(store.getState())).toEqual(false);
+      expect(removeTodoAction.wasCancelled()(store.getState())).toEqual(false);
     });
 
     it('trying set FAILURE in state.', () => {
