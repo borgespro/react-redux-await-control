@@ -1,5 +1,16 @@
 # react-redux-await-control
 
+## 0.11.0
+
+### Minor Changes
+
+- c985107: It`s added the possibility to create multi controls on hook useAwaitControl.
+- 81fcf6e: [BREAKING CHANGES] It was altered the name of the method that verify if the action was cancelled. isCancelled -> wasCancelled
+
+### Patch Changes
+
+- 86680da: Exposing the types!
+
 ## 0.10.1
 
 ### Patch Changes
