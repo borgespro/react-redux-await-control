@@ -38,6 +38,8 @@ module.exports = {
     'no-useless-constructor': 'off',
     'no-unused-vars': 'off',
     'no-use-before-define': 'off',
+    "no-redeclare": "off",
+    "@typescript-eslint/no-redeclare": ["error"]
   },
   settings: { 'import/resolver': { node: { extensions: ['.js', '.ts', '.jsx', '.tsx'] } } },
 };

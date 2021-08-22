@@ -1,28 +1,32 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import {
+ TypedUseSelectorHook, useDispatch, useSelector
+} from 'react-redux';
 
+import {Dispatch} from "redux";
 import AsyncActionControl from './AsyncActionControl';
 import { AwaitControlHook } from './types';
 
-export default function useAwaitControl<TResult = any>(asyncAction: AsyncActionControl): AwaitControlHook {
-  const dispatch = useDispatch();
+type ParamType = AsyncActionControl | AsyncActionControl[];
+type ReturnType = AwaitControlHook | AwaitControlHook[];
 
-  const start = (payload?: any, meta?: any) => dispatch(asyncAction.start(payload, meta));
-  const success = (payload?: any, meta?: any) => dispatch(asyncAction.success(payload, meta));
-  const cancel = (payload?: any, meta?: any) => dispatch(asyncAction.cancel(payload, meta));
-  const failure = (payload?: any, meta?: any) => dispatch(asyncAction.failure(payload, meta));
-  const clear = (meta?: any) => dispatch(asyncAction.clear(null, meta));
+function createHook<TResult>(dispatch: Dispatch<any>, control: AsyncActionControl): AwaitControlHook {
+  const start = (payload?: any, meta?: any) => dispatch(control.start(payload, meta));
+  const success = (payload?: any, meta?: any) => dispatch(control.success(payload, meta));
+  const cancel = (payload?: any, meta?: any) => dispatch(control.cancel(payload, meta));
+  const failure = (payload?: any, meta?: any) => dispatch(control.failure(payload, meta));
+  const clear = (meta?: any) => dispatch(control.clear(null, meta));
 
   const isRunning = (actionId?: string | number) =>
-    useSelector<boolean>(asyncAction.isRunning(actionId)) as TypedUseSelectorHook<boolean>;
+    useSelector<boolean>(control.isRunning(actionId)) as TypedUseSelectorHook<boolean>;
   const isCancelled = (actionId?: string | number) =>
-    useSelector<boolean>(asyncAction.isCancelled(actionId)) as TypedUseSelectorHook<boolean>;
+    useSelector<boolean>(control.isCancelled(actionId)) as TypedUseSelectorHook<boolean>;
   const hasFailure = (actionId?: string | number) =>
-    useSelector<boolean>(asyncAction.hasFailure(actionId)) as TypedUseSelectorHook<boolean>;
+    useSelector<boolean>(control.hasFailure(actionId)) as TypedUseSelectorHook<boolean>;
   const isSuccessful = (actionId?: string | number) =>
-    useSelector<boolean>(asyncAction.isSuccessful(actionId)) as TypedUseSelectorHook<boolean>;
+    useSelector<boolean>(control.isSuccessful(actionId)) as TypedUseSelectorHook<boolean>;
 
   const result = (actionId?: string | number) =>
-    useSelector<TResult>(asyncAction.getResult(actionId)) as TypedUseSelectorHook<TResult>;
+    useSelector<TResult>(control.getResult(actionId)) as TypedUseSelectorHook<TResult>;
 
   return {
     start,
@@ -37,3 +41,17 @@ export default function useAwaitControl<TResult = any>(asyncAction: AsyncActionC
     result,
   };
 }
+
+function useAwaitControl<TResult = any>(control: AsyncActionControl): AwaitControlHook;
+function useAwaitControl<TResult = any>(control: AsyncActionControl[]): AwaitControlHook[];
+function useAwaitControl<TResult = any>(control: ParamType): ReturnType {
+  const dispatch = useDispatch();
+
+  if (Array.isArray(control)) {
+    return control.map((_control) => createHook<TResult>(dispatch, _control));
+  }
+
+  return createHook<TResult>(dispatch, control);
+}
+
+export default useAwaitControl;
