@@ -3,6 +3,8 @@ import reducer from './reducer';
 import AwaitControl from './AwaitControl';
 import useAwaitControl from './useAwaitControl';
 
+export * from './types';
+
 export {
  createAsyncAction, reducer, useAwaitControl,
 };
