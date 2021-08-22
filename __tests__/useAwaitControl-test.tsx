@@ -11,15 +11,17 @@ describe('Testing useAwaitControl', () => {
   let control;
   const fetchTodosAction = createAsyncAction('FETCH_TODOS', { saveResult: true });
 
+  const addTodoAction = createAsyncAction('ADD_TODO', { saveResult: true });
+  const editTodoAction = createAsyncAction('EDIT_TODO', { saveResult: true });
+  const removeTodoAction = createAsyncAction('REMOVE_TODO', { saveResult: true });
+
   const renderHookWrapper = (fn) => {
     renderHook(fn, { wrapper: (props) => <Provider {...props} store={store} /> });
   };
 
   beforeEach(() => {
     store = createTestStore();
-    const { result } = renderHook(() => useAwaitControl(fetchTodosAction), {
-      wrapper: (props) => <Provider {...props} store={store} />,
-    });
+    const { result } = renderHook(() => useAwaitControl(fetchTodosAction), {wrapper: (props) => <Provider {...props} store={store} />,});
 
     control = result.current;
   });
@@ -117,5 +119,38 @@ describe('Testing useAwaitControl', () => {
     });
 
     expect(fetchTodosAction.isRunning()(store.getState())).toBe(false);
+  });
+
+  it('validate hook for multiples controls', () => {
+    renderHookWrapper(() => {
+      const [addTodoControl, editTodoControl, removeTodoControl] = useAwaitControl([
+        addTodoAction, editTodoAction, removeTodoAction,
+      ]);
+
+      addTodoControl.start();
+      editTodoControl.start();
+      removeTodoControl.start();
+    });
+
+    expect(addTodoAction.isRunning()(store.getState())).toBeTruthy();
+    expect(editTodoAction.isRunning()(store.getState())).toBeTruthy();
+    expect(removeTodoAction.isRunning()(store.getState())).toBeTruthy();
+
+    renderHookWrapper(() => {
+      const [addTodoControl, editTodoControl, removeTodoControl] = useAwaitControl([
+        addTodoAction, editTodoAction, removeTodoAction,
+      ]);
+
+      addTodoControl.start();
+      addTodoControl.success();
+      editTodoControl.start();
+      editTodoControl.success();
+      removeTodoControl.start();
+      removeTodoControl.success();
+    });
+
+    expect(addTodoAction.isSuccessful()(store.getState())).toBeTruthy();
+    expect(editTodoAction.isSuccessful()(store.getState())).toBeTruthy();
+    expect(removeTodoAction.isSuccessful()(store.getState())).toBeTruthy();
   });
 });
