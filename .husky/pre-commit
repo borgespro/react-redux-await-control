@@ -7,8 +7,10 @@ fi
 
 yarn test
 yarn lint-staged
-source $(dirname "$0")/../.ci/change_version
-change_version;
+if ! $GITHUB_RUN_ID ; then
+  source $(dirname "$0")/../.ci/change_version
+  change_version;
+fi
 exit 0;
 
 
