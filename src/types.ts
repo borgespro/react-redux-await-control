@@ -1,5 +1,7 @@
 import { TypedUseSelectorHook } from 'react-redux';
-import { Action, ActionFunctionAny, ActionMeta } from 'redux-actions';
+import {
+ Action, ActionFunctionAny, ActionMeta 
+} from 'redux-actions';
 
 export type AsyncActionState = 'START' | 'SUCCESS' | 'FAILURE' | 'CANCEL';
 
@@ -31,7 +33,7 @@ export type AwaitControlHook = {
   failure: (payload?: any, meta?: any) => BaseAction;
   clear: (payload?: any, meta?: any) => BaseAction;
   isRunning: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
-  isCancelled: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
+  wasCancelled: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
   hasFailure: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
   isSuccessful: (actionId?: string | number) => TypedUseSelectorHook<boolean>;
   result: (actionId?: string | number) => TypedUseSelectorHook<any>;

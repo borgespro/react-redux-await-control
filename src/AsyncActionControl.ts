@@ -1,7 +1,9 @@
 import { ActionFunctionAny } from 'redux-actions';
 
 import AwaitControl from './AwaitControl';
-import { AsyncBaseActionControl, BaseAction, Selector } from './types';
+import {
+ AsyncBaseActionControl, BaseAction, Selector 
+} from './types';
 
 export default class AsyncActionControl {
   label: string;
@@ -49,7 +51,7 @@ export default class AsyncActionControl {
     return (state: any) => this.getStateValue(state, actionId) === 'START';
   }
 
-  isCancelled(actionId?: string | number): Selector {
+  wasCancelled(actionId?: string | number): Selector {
     return (state: any) => this.getStateValue(state, actionId) === 'CANCEL';
   }
 

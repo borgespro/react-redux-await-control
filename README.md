@@ -123,7 +123,7 @@ export default function Component() {
 | clear        |            |             |             |
 | result       |            |             |             |
 | isRunning    |            |             |             |
-| isCancelled  |            |             |             |
+| wasCancelled |            |             |             |
 | hasFailure   |            |             |             |
 | isSuccessful |            |             |             |
 
