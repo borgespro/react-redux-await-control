@@ -42,7 +42,7 @@ import { createAsyncAction } from 'react-redux-await-control';
 ...
 
 export const removeTodo = createAsyncAction('REMOVE_TODO');
-// in this way the information passed by parameters on success or failure is saved.
+# in this way the information passed by parameters on success or failure is saved.
 export const listTodo = createAsyncAction('LIST_TODO', { saveResult: true });
 ```
 
