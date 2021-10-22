@@ -73,7 +73,7 @@ describe('Testing integration with redux', () => {
       store.dispatch(fetchTodosAction.success({ validation: true }));
       expect(store.getState().control[fetchTodosActionName][1].validation).toBeTruthy();
       store.dispatch(fetchTodosAction.success({ validation: false }));
-      expect(store.getState().control[fetchTodosActionName][1].validation).toBeTruthy();
+      expect(store.getState().control[fetchTodosActionName][1].validation).toBeFalsy();
     });
   });
 

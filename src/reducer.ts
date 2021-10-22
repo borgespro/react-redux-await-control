@@ -43,10 +43,18 @@ export default function reducer(state: AsyncActionReducer = {}, action: BaseActi
   const resultStatus = [SUCCESS, FAILURE];
 
   if (
-    state[formattedRequestName] &&
-    state[formattedRequestName][0] === START &&
-    [...resultStatus, CANCEL].includes(requestState)
+    state[formattedRequestName]
+    && [CANCEL, FAILURE].includes(state[formattedRequestName][0])
+    && requestState !== START
   ) {
+    return state;
+  }
+
+  if (requestState === START) {
+    return { ...state, [formattedRequestName]: [START] };
+  }
+
+  if (state[formattedRequestName] && [...resultStatus, CANCEL].includes(requestState)) {
     const storingData: AsyncActionReducerData = [requestState as AsyncActionState];
 
     if (meta?.store) {
@@ -54,10 +62,6 @@ export default function reducer(state: AsyncActionReducer = {}, action: BaseActi
     }
 
     return { ...state, [formattedRequestName]: storingData };
-  }
-
-  if (requestState === START) {
-    return { ...state, [formattedRequestName]: [START] };
   }
 
   return state;
