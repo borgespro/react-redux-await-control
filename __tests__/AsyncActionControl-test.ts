@@ -63,4 +63,11 @@ describe('Testing AsyncActionControl', () => {
     store.dispatch(asyncAction.failure(error));
     expect(asyncAction.getResultValue(store.getState())).toEqual(error);
   });
+
+  it('getResultValue validation', () => {
+    const store = createTestStore();
+    AwaitControl.init({ extractState: s => ({}), keyReducer: 'control' });
+    store.dispatch(asyncAction.start());
+    expect(() => asyncAction.getStateValue(store.getState())).toThrowError();
+  });
 });

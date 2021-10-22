@@ -2,7 +2,7 @@ import { ActionFunctionAny } from 'redux-actions';
 
 import AwaitControl from './AwaitControl';
 import {
- AsyncBaseActionControl, BaseAction, Selector 
+ AsyncBaseActionControl, BaseAction, Selector
 } from './types';
 
 export default class AsyncActionControl {
@@ -29,7 +29,14 @@ export default class AsyncActionControl {
   }
 
   private getData(s, actionId?: string | number) {
-    const stored = s[AwaitControl.getControl().keyReducer][this.getKey(actionId)];
+    const control = AwaitControl.getControl();
+    const extracted = control.extractState(s);
+    const statedAction = extracted[control.keyReducer];
+
+    if (!statedAction) {
+      throw new Error(`Reducer ${control.keyReducer} not started.`);
+    }
+    const stored = extracted[control.keyReducer][this.getKey(actionId)];
 
     if (stored) {
       const [state, resultData] = stored;
