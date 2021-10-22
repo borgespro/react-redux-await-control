@@ -57,7 +57,7 @@ export default function reducer(state: AsyncActionReducer = {}, action: BaseActi
   }
 
   if (requestState === START) {
-    return { ...state, [formattedRequestName]: [START, payload] };
+    return { ...state, [formattedRequestName]: [START] };
   }
 
   return state;
