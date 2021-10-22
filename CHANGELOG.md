@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.12.0
+
+### Minor Changes
+
+- da22762: Supporting to parse store object
+
 ## 0.11.1
 
 ### Patch Changes
