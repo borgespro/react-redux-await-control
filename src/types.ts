@@ -1,6 +1,6 @@
 import { TypedUseSelectorHook } from 'react-redux';
 import {
- Action, ActionFunctionAny, ActionMeta 
+ Action, ActionFunctionAny, ActionMeta
 } from 'redux-actions';
 
 export type AsyncActionState = 'START' | 'SUCCESS' | 'FAILURE' | 'CANCEL';
@@ -24,6 +24,7 @@ export type Selector = (state: any) => any;
 
 export type AwaitControlInitializer = {
   keyReducer?: string;
+  extractState?: (s: any) => any;
 };
 
 export type AwaitControlHook = {

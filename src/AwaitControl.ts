@@ -8,6 +8,8 @@ export default class AwaitControl {
 
   public keyReducer: string = 'rrAwaitControl';
 
+  public extractState = (s) => s;
+
   public static init(config?: AwaitControlInitializer): AwaitControl {
     if (!AwaitControl.control) {
       AwaitControl.control = new AwaitControl();
@@ -15,6 +17,10 @@ export default class AwaitControl {
 
     if (config?.keyReducer) {
       AwaitControl.control.keyReducer = config.keyReducer;
+    }
+
+    if (config?.extractState) {
+      AwaitControl.control.extractState = config.extractState;
     }
 
     return AwaitControl.control;
