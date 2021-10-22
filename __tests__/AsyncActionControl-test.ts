@@ -29,6 +29,7 @@ describe('Testing AsyncActionControl', () => {
     expect(asyncAction.getStateValue(store.getState())).toEqual('START');
     store.dispatch(asyncAction.start({ actionId: 999 }));
     expect(asyncAction.getStateValue(store.getState(), 999)).toEqual('START');
+    expect(asyncAction.getResultValue(store.getState())).toBeUndefined();
     store.dispatch(asyncAction.success());
     expect(asyncAction.getStateValue(store.getState())).toEqual('SUCCESS');
     store.dispatch(asyncAction.success({ actionId: 999 }));
@@ -53,6 +54,7 @@ describe('Testing AsyncActionControl', () => {
     AwaitControl.init({ keyReducer: 'control' });
     store.dispatch(asyncAction.start());
     expect(asyncAction.getStateValue(store.getState())).toEqual('START');
+    expect(asyncAction.getResultValue(store.getState())).toBeUndefined();
     store.dispatch(asyncAction.success('OK'));
     expect(asyncAction.getResultValue(store.getState())).toEqual('OK');
     store.dispatch(asyncAction.start({ actionId: 999 }));
@@ -68,6 +70,7 @@ describe('Testing AsyncActionControl', () => {
     const store = createTestStore();
     AwaitControl.init({ extractState: s => ({}), keyReducer: 'control' });
     store.dispatch(asyncAction.start());
+    expect(() => asyncAction.getResultValue(store.getState())).toThrowError();
     expect(() => asyncAction.getStateValue(store.getState())).toThrowError();
   });
 });
