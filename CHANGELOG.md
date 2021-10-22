@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.12.2
+
+### Patch Changes
+
+- 227a0c6: [Config] Fix error on extractAction
+
 ## 0.12.1
 
 ### Patch Changes
