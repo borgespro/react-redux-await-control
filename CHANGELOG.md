@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.12.3
+
+### Patch Changes
+
+- 75a614b: Adding possibility to change final status
+
 ## 0.12.2
 
 ### Patch Changes
