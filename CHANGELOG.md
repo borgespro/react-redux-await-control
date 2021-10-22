@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.12.1
+
+### Patch Changes
+
+- f3cd442: New test validations for start state action
+
 ## 0.12.0
 
 ### Minor Changes
