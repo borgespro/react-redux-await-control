@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.11.1
+
+### Patch Changes
+
+- 3e3d398: [HotFix] Fixing saved data on start!
+
 ## 0.11.0
 
 ### Minor Changes
