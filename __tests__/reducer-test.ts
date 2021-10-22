@@ -42,7 +42,7 @@ describe('Testing reducer.', () => {
     expect(stateAfter2[MOCK_ACTION][1]).toBeUndefined();
     const stateAfter3 = reducer({ [MOCK_ACTION]: ['SUCCESS'] }, mockAction('CANCEL'));
     expect(stateAfter3[MOCK_ACTION][0]).toBeDefined();
-    expect(stateAfter3[MOCK_ACTION][0]).toEqual('SUCCESS');
+    expect(stateAfter3[MOCK_ACTION][0]).toEqual('CANCEL');
   });
 
   it('Testing FAILURE action', () => {
@@ -58,7 +58,7 @@ describe('Testing reducer.', () => {
     expect(stateAfter3[MOCK_ACTION][1]).toEqual(true);
     const stateAfter4 = reducer({ [MOCK_ACTION]: ['SUCCESS'] }, mockAction('FAILURE'));
     expect(stateAfter4[MOCK_ACTION][0]).toBeDefined();
-    expect(stateAfter4[MOCK_ACTION][0]).toEqual('SUCCESS');
+    expect(stateAfter4[MOCK_ACTION][0]).toEqual('FAILURE');
     expect(stateAfter4[MOCK_ACTION][1]).toBeUndefined();
   });
 
