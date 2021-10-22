@@ -31,12 +31,12 @@ export default class AsyncActionControl {
   private getData(s, actionId?: string | number) {
     const control = AwaitControl.getControl();
     const extracted = control.extractState(s);
-    const statedAction = extracted[control.keyReducer];
+    const statedAction = extracted(control.keyReducer);
 
     if (!statedAction) {
       throw new Error(`Reducer ${control.keyReducer} not started.`);
     }
-    const stored = extracted[control.keyReducer][this.getKey(actionId)];
+    const stored = statedAction[this.getKey(actionId)];
 
     if (stored) {
       const [state, resultData] = stored;

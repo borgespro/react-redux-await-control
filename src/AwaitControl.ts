@@ -8,7 +8,7 @@ export default class AwaitControl {
 
   public keyReducer: string = 'rrAwaitControl';
 
-  public extractState = (s) => s;
+  public extractState = (s: any) => (key: string) => s[key];
 
   public static init(config?: AwaitControlInitializer): AwaitControl {
     if (!AwaitControl.control) {
