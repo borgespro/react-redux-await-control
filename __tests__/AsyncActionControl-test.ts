@@ -73,4 +73,15 @@ describe('Testing AsyncActionControl', () => {
     expect(() => asyncAction.getResultValue(store.getState())).toThrowError();
     expect(() => asyncAction.getStateValue(store.getState())).toThrowError();
   });
+
+  it('initial value', () => {
+    const store = createTestStore();
+    AwaitControl.init({ keyReducer: 'control' });
+    expect(asyncAction.getResultValue(store.getState())).toBeUndefined();
+    const isActive = createAsyncAction('IS_ACTIVE', { saveResult: true, initialValue: true });
+    expect(isActive.getResultValue(store.getState())).toBeTruthy();
+    store.dispatch(asyncAction.start());
+    store.dispatch(asyncAction.success(false));
+    expect(isActive.getResultValue(store.getState())).toBeFalsy();
+  });
 });
