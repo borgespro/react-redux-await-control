@@ -2,13 +2,18 @@ import { ActionFunctionAny } from 'redux-actions';
 
 import AwaitControl from './AwaitControl';
 import {
- AsyncBaseActionControl, BaseAction, Selector
+  AsyncActionControlOptions,
+  AsyncBaseActionControl,
+  BaseAction,
+  Selector,
 } from './types';
 
 export default class AsyncActionControl {
   label: string;
 
   rawKey: string;
+
+  options: AsyncActionControlOptions;
 
   start: ActionFunctionAny<BaseAction>;
 
@@ -74,9 +79,10 @@ export default class AsyncActionControl {
     return (state: any) => this.getResultValue(state, actionId);
   }
 
-  constructor(label: string, rawKey: string, stateActions: AsyncBaseActionControl) {
+  constructor(label: string, rawKey: string, stateActions: AsyncBaseActionControl, options: AsyncActionControlOptions) {
     this.label = label;
     this.rawKey = rawKey;
+    this.options = options;
     this.start = stateActions.start;
     this.success = stateActions.success;
     this.failure = stateActions.failure;
