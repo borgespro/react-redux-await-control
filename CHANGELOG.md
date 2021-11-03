@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.12.4
+
+### Patch Changes
+
+- 6638506: Adding possibility to set initial value in async action
+
 ## 0.12.3
 
 ### Patch Changes
