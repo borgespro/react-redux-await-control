@@ -43,11 +43,11 @@ export default class AsyncActionControl {
     }
     const stored = statedAction[this.getKey(actionId)];
 
-    if (stored) {
-      if (stored.length <= 1 && this.options?.initialValue !== undefined) {
-        return this.options.initialValue;
-      }
+    if ((!stored || stored.length <= 1) && this.options?.initialValue !== undefined) {
+      return { resultData: this.options.initialValue };
+    }
 
+    if (stored) {
       const [state, resultData] = stored;
       return { state, resultData };
     }
