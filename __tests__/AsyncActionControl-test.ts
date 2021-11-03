@@ -66,6 +66,17 @@ describe('Testing AsyncActionControl', () => {
     expect(asyncAction.getResultValue(store.getState())).toEqual(error);
   });
 
+  it('initial value', () => {
+    const store = createTestStore();
+    AwaitControl.init({ keyReducer: 'control' });
+    expect(asyncAction.getResultValue(store.getState())).toBeUndefined();
+    const isActive = createAsyncAction('IS_ACTIVE', { saveResult: true, initialValue: true });
+    expect(isActive.getResultValue(store.getState())).toBeTruthy();
+    store.dispatch(isActive.start());
+    store.dispatch(isActive.success(false));
+    expect(isActive.getResultValue(store.getState())).toBeFalsy();
+  });
+
   it('getResultValue validation', () => {
     const store = createTestStore();
     AwaitControl.init({ extractState: s => ({}), keyReducer: 'control' });

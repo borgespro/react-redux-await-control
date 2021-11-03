@@ -9,12 +9,14 @@ import {
 type ActionConfig = {
   prefix?: string;
   saveResult?: boolean;
+  initialValue?: any;
 };
 
 export default function createAsyncAction<Payload, Meta = never>(
   actionName: string,
   config?: ActionConfig,
 ): AsyncActionControl {
+  const { saveResult, initialValue } = config || {};
   const prefix = config?.prefix?.trim() || PREFIX;
   const asyncActionsMapper = {};
   const asyncLabelsMapper = {};
@@ -30,7 +32,7 @@ export default function createAsyncAction<Payload, Meta = never>(
         throw new Error('Meta should be a object');
       }
 
-      return { ...meta, store: !!config?.saveResult };
+      return { ...meta, store: !!saveResult };
     };
     actionPayload.toString = () => `${actionLabel}_${status}`
     actionPayloadAndMeta.toString = () => `${actionLabel}_${status}`
@@ -45,11 +47,9 @@ export default function createAsyncAction<Payload, Meta = never>(
     [asyncLabelsMapper[CLEAR].label]: clear,
   } = createActions(asyncActionsMapper, { prefix });
 
-  return new AsyncActionControl(actionLabel, actionName, {
-    start,
-    success,
-    failure,
-    cancel,
-    clear,
-  });
+  const actions = {
+   start, success, failure, cancel, clear
+  };
+
+  return new AsyncActionControl(actionLabel, actionName, actions, { initialValue });
 }

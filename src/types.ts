@@ -7,6 +7,9 @@ export type AsyncActionState = 'START' | 'SUCCESS' | 'FAILURE' | 'CANCEL';
 
 export type BaseAction = Action<any> | ActionMeta<any, any>;
 
+export type AsyncActionControlOptions = {
+  initialValue: any;
+};
 export type AsyncBaseActionControl = {
   start: ActionFunctionAny<BaseAction>;
   success: ActionFunctionAny<BaseAction>;
