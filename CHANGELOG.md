@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.12.5
+
+### Patch Changes
+
+- bb90dcd: Fixing types for useAwaitControl hook
+
 ## 0.12.4
 
 ### Patch Changes
