@@ -1,6 +1,4 @@
-import {
- TypedUseSelectorHook, useDispatch, useSelector
-} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {Dispatch} from "redux";
 import AsyncActionControl from './AsyncActionControl';
@@ -16,17 +14,11 @@ function createHook<TResult>(dispatch: Dispatch<any>, control: AsyncActionContro
   const failure = (payload?: any, meta?: any) => dispatch(control.failure(payload, meta));
   const clear = (meta?: any) => dispatch(control.clear(null, meta));
 
-  const isRunning = (actionId?: string | number) =>
-    useSelector<boolean>(control.isRunning(actionId)) as TypedUseSelectorHook<boolean>;
-  const wasCancelled = (actionId?: string | number) =>
-    useSelector<boolean>(control.wasCancelled(actionId)) as TypedUseSelectorHook<boolean>;
-  const hasFailure = (actionId?: string | number) =>
-    useSelector<boolean>(control.hasFailure(actionId)) as TypedUseSelectorHook<boolean>;
-  const isSuccessful = (actionId?: string | number) =>
-    useSelector<boolean>(control.isSuccessful(actionId)) as TypedUseSelectorHook<boolean>;
-
-  const result = (actionId?: string | number) =>
-    useSelector<TResult>(control.getResult(actionId)) as TypedUseSelectorHook<TResult>;
+  const isRunning = (actionId?: string | number) => useSelector<unknown, boolean>(control.isRunning(actionId));
+  const wasCancelled = (actionId?: string | number) => useSelector<unknown, boolean>(control.wasCancelled(actionId));
+  const hasFailure = (actionId?: string | number) => useSelector<unknown, boolean>(control.hasFailure(actionId));
+  const isSuccessful = (actionId?: string | number) => useSelector<unknown, boolean>(control.isSuccessful(actionId));
+  const result = (actionId?: string | number) => useSelector<unknown, TResult>(control.getResult(actionId));
 
   return {
     start,
