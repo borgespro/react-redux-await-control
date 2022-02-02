@@ -7,3 +7,5 @@ export const CLEAR = 'CLEAR';
 export const STATUS_LIST = [START, SUCCESS, FAILURE, CANCEL, CLEAR];
 
 export const PREFIX = 'ASYNC_ACTION';
+export const NEVER = 'RRAC__never';
+

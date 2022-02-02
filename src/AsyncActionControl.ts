@@ -7,6 +7,7 @@ import {
   BaseAction,
   Selector,
 } from './types';
+import { NEVER } from './constants';
 
 export default class AsyncActionControl {
   label: string;
@@ -43,7 +44,7 @@ export default class AsyncActionControl {
     }
     const stored = statedAction[this.getKey(actionId)];
 
-    if ((!stored || stored.length <= 1) && this.options?.initialValue !== undefined) {
+    if (this.options?.initialValue !== undefined && (!stored || stored[1] === NEVER)) {
       return { resultData: this.options.initialValue };
     }
 
@@ -60,7 +61,13 @@ export default class AsyncActionControl {
   }
 
   getResultValue(state, actionId?: string | number): any {
-    return this.getData(state, actionId).resultData;
+    const value = this.getData(state, actionId).resultData;
+
+    if (value !== NEVER) {
+      return value;
+    }
+
+    return undefined;
   }
 
   isRunning(actionId?: string | number): Selector {
