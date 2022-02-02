@@ -4,9 +4,11 @@ import createTestStore from './utils/createTestStore';
 
 describe('Testing AsyncActionControl', () => {
   const asyncAction = createAsyncAction('REMOVE_ITEM', { prefix: 'TEXT_PREFIX', saveResult: true });
+  const asyncActionWithInitialValue = createAsyncAction('LIST_ITEMS', { saveResult: true, initialValue: [] });
 
   it('label validation', () => {
     expect(asyncAction.label).toEqual('TEXT_PREFIX/REMOVE_ITEM');
+    expect(asyncActionWithInitialValue.label).toEqual('ASYNC_ACTION/LIST_ITEMS');
   });
 
   it('toString validation', () => {
@@ -47,6 +49,18 @@ describe('Testing AsyncActionControl', () => {
     store.dispatch(asyncAction.success());
     store.dispatch(asyncAction.clear());
     expect(asyncAction.getStateValue(store.getState())).toEqual(undefined);
+  });
+
+  it('result keeping', () => {
+    const store = createTestStore();
+    AwaitControl.init({ keyReducer: 'control' });
+    store.dispatch(asyncActionWithInitialValue.start());
+    expect(asyncActionWithInitialValue.getResultValue(store.getState())). toEqual([]);
+    const resource = [{ id: 1 }, { id: 2 }];
+    store.dispatch(asyncActionWithInitialValue.success([...resource]));
+    expect(asyncActionWithInitialValue.getResultValue(store.getState())).toEqual(resource);
+    store.dispatch(asyncActionWithInitialValue.start());
+    expect(asyncActionWithInitialValue.getResultValue(store.getState())).toEqual(resource);
   });
 
   it('getResultValue validation', () => {

@@ -4,7 +4,7 @@ import {
  AsyncActionReducer, AsyncActionReducerData, AsyncActionState, BaseAction,
 } from './types';
 import {
- CANCEL, CLEAR, FAILURE, START, SUCCESS,
+ CANCEL, CLEAR, FAILURE, NEVER, START, SUCCESS,
 } from './constants';
 
 const formatRequestName = (requestName: string, { payload, meta }: ActionMeta<any, any>) => {
@@ -51,6 +51,11 @@ export default function reducer(state: AsyncActionReducer = {}, action: BaseActi
   }
 
   if (requestState === START) {
+    if (meta?.store) {
+      const current = state[formattedRequestName];
+      return { ...state, [formattedRequestName]: current ? [START, current[1]] : [START, NEVER] }
+    }
+
     return { ...state, [formattedRequestName]: [START] };
   }
 

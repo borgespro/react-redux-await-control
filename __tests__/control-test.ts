@@ -75,6 +75,14 @@ describe('Testing integration with redux', () => {
       store.dispatch(fetchTodosAction.success({ validation: false }));
       expect(store.getState().control[fetchTodosActionName][1].validation).toBeFalsy();
     });
+
+    it('create use case to keep first result when second start action is dispatched.', () => {
+      store.dispatch(fetchTodosAction.success([{ id: 1 }, { id: 2 }]));
+      const first = fetchTodosAction.getResultValue(store.getState());
+      store.dispatch(fetchTodosAction.start());
+      const second = fetchTodosAction.getResultValue(store.getState());
+      expect(first).toEqual(second);
+    });
   });
 
   describe('async actions invalid flux', () => {
