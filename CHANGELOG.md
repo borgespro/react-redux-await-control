@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.13.0
+
+### Minor Changes
+
+- 773c95d: Changing behavior of result on restarted actions
+
 ## 0.12.5
 
 ### Patch Changes
