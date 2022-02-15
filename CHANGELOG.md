@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.15.0
+
+### Minor Changes
+
+- fa5b88f: [BREAKCHANGES] Putting context inside options on creating action.
+
 ## 0.14.0
 
 ### Minor Changes

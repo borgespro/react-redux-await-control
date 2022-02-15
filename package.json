@@ -1,6 +1,6 @@
 {
   "name": "react-redux-await-control",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "Helping to control the state of async actions flux.",
   "repository": "https://github.com/borgespro/react-redux-await-control",
   "bugs": "https://github.com/borgespro/react-redux-await-control/issues",
