@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.14.0
+
+### Minor Changes
+
+- 1bd8823: It`s added getContext. This method on action allows save function, string and others thing that you like to save on action. This feature can allow you to reuse more code. =D
+
 ## 0.13.0
 
 ### Minor Changes
