@@ -3,12 +3,15 @@ import createAsyncAction from '../src/createAsyncAction';
 
 describe('Testing context implementation', () => {
   AwaitControl.init({ keyReducer: 'control' });
-  const withContextTestAction = createAsyncAction('WITH_CONTEXT_TEST', { saveResult: true }, {
-    make: () => true,
-    nested: { a: { b: 'c' } }
+  const withContextTestAction = createAsyncAction('WITH_CONTEXT_TEST', {
+    saveResult: true,
+    context: {
+      make: () => true,
+      nested: {a: {b: 'c'}}
+    }
   });
   const withoutContextTestAction = createAsyncAction('WITHOUT_CONTEXT_TEST', { saveResult: true });
-  const emptyContextTestAction = createAsyncAction('EMPTY_CONTEXT_TEST', { saveResult: true }, {});
+  const emptyContextTestAction = createAsyncAction('EMPTY_CONTEXT_TEST', { saveResult: true, context: {} });
 
   it('getContext is defined', () => {
     expect(withContextTestAction.getContext).toBeDefined();

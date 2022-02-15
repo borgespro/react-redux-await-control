@@ -10,14 +10,14 @@ type ActionConfig = {
   prefix?: string;
   saveResult?: boolean;
   initialValue?: any;
+  context?: object;
 };
 
-export default function createAsyncAction<Payload, Meta = never, Context = never>(
+export default function createAsyncAction<Payload, Meta = never>(
   actionName: string,
   config?: ActionConfig,
-  context?: Context,
 ): AsyncActionControl {
-  const { saveResult, initialValue } = config || {};
+  const { saveResult, initialValue, context = {} } = config || {};
   const prefix = config?.prefix?.trim() || PREFIX;
   const asyncActionsMapper = {};
   const asyncLabelsMapper = {};
@@ -52,5 +52,5 @@ export default function createAsyncAction<Payload, Meta = never, Context = never
    start, success, failure, cancel, clear
   };
 
-  return new AsyncActionControl(actionLabel, actionName, actions, { initialValue }, context);
+  return new AsyncActionControl(actionLabel, actionName, actions, { initialValue, context });
 }

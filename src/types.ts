@@ -9,6 +9,7 @@ export type BaseAction = Action<any> | ActionMeta<any, any>;
 
 export type AsyncActionControlOptions = {
   initialValue: any;
+  context: any;
 };
 export type AsyncBaseActionControl = {
   start: ActionFunctionAny<BaseAction>;

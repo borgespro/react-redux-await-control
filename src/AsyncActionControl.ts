@@ -11,8 +11,6 @@ import { NEVER } from './constants';
 import get from './get';
 
 export default class AsyncActionControl<Context = never> {
-  private readonly context: Context | {};
-
   label: string;
 
   rawKey: string;
@@ -94,15 +92,13 @@ export default class AsyncActionControl<Context = never> {
   }
 
   getContext(path?: string) {
-    return get(this.context, path);
+    return get(this.options.context, path);
   }
 
-  constructor(label: string, rawKey: string, stateActions: AsyncBaseActionControl, options: AsyncActionControlOptions, context: Context) {
-
+  constructor(label: string, rawKey: string, stateActions: AsyncBaseActionControl, options: AsyncActionControlOptions) {
     this.label = label;
     this.rawKey = rawKey;
     this.options = options;
-    this.context = context || {};
     this.start = stateActions.start;
     this.success = stateActions.success;
     this.failure = stateActions.failure;
