@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.15.1
+
+### Patch Changes
+
+- 42c7458: Taking "get" function to utils file
+
 ## 0.15.0
 
 ### Minor Changes
