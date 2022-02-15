@@ -12,9 +12,10 @@ type ActionConfig = {
   initialValue?: any;
 };
 
-export default function createAsyncAction<Payload, Meta = never>(
+export default function createAsyncAction<Payload, Meta = never, Context = never>(
   actionName: string,
   config?: ActionConfig,
+  context?: Context,
 ): AsyncActionControl {
   const { saveResult, initialValue } = config || {};
   const prefix = config?.prefix?.trim() || PREFIX;
@@ -51,5 +52,5 @@ export default function createAsyncAction<Payload, Meta = never>(
    start, success, failure, cancel, clear
   };
 
-  return new AsyncActionControl(actionLabel, actionName, actions, { initialValue });
+  return new AsyncActionControl(actionLabel, actionName, actions, { initialValue }, context);
 }

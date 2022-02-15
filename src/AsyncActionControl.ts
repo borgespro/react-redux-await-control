@@ -8,8 +8,11 @@ import {
   Selector,
 } from './types';
 import { NEVER } from './constants';
+import get from './get';
 
-export default class AsyncActionControl {
+export default class AsyncActionControl<Context = never> {
+  private readonly context: Context | {};
+
   label: string;
 
   rawKey: string;
@@ -90,10 +93,16 @@ export default class AsyncActionControl {
     return (state: any) => this.getResultValue(state, actionId);
   }
 
-  constructor(label: string, rawKey: string, stateActions: AsyncBaseActionControl, options: AsyncActionControlOptions) {
+  getContext(path?: string) {
+    return get(this.context, path);
+  }
+
+  constructor(label: string, rawKey: string, stateActions: AsyncBaseActionControl, options: AsyncActionControlOptions, context: Context) {
+
     this.label = label;
     this.rawKey = rawKey;
     this.options = options;
+    this.context = context || {};
     this.start = stateActions.start;
     this.success = stateActions.success;
     this.failure = stateActions.failure;
