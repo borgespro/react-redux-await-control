@@ -8,7 +8,7 @@ import {
   Selector,
 } from './types';
 import { NEVER } from './constants';
-import get from './get';
+import { get } from './utils';
 
 export default class AsyncActionControl<Context = never> {
   label: string;
