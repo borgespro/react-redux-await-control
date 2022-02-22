@@ -92,7 +92,9 @@ export default class AsyncActionControl<Context = never> {
   }
 
   getContext(path?: string) {
-    return get(this.options.context, path);
+    const control = AwaitControl.getControl();
+    const context = { ...control.baseContext, ...this.options.context };
+    return get(context, path);
   }
 
   constructor(label: string, rawKey: string, stateActions: AsyncBaseActionControl, options: AsyncActionControlOptions) {

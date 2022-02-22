@@ -2,7 +2,13 @@ import AwaitControl from '../src';
 import createAsyncAction from '../src/createAsyncAction';
 
 describe('Testing context implementation', () => {
-  AwaitControl.init({ keyReducer: 'control' });
+  const baseContext = {
+    falsy: false,
+    truthy: true,
+    getFalsy: () => false,
+    getTruthy: () => true,
+  }
+  AwaitControl.init({ keyReducer: 'control', baseContext });
   const withContextTestAction = createAsyncAction('WITH_CONTEXT_TEST', {
     saveResult: true,
     context: {
@@ -29,8 +35,8 @@ describe('Testing context implementation', () => {
     expect(emptyContext).toBeDefined();
 
     expect(Object.keys(withContext).length).toBeGreaterThan(0);
-    expect(Object.keys(withoutContext).length).toEqual(0);
-    expect(Object.keys(emptyContext).length).toEqual(0);
+    expect(Object.keys(withoutContext).length).toEqual(Object.keys(baseContext).length);
+    expect(Object.keys(emptyContext).length).toEqual(Object.keys(baseContext).length);
   });
 
   it('queries on getContext', () => {
@@ -53,5 +59,34 @@ describe('Testing context implementation', () => {
     expect(test).toBeUndefined();
     nestedTest = emptyContextTestAction.getContext('nested.test');
     expect(nestedTest).toBeUndefined();
+  });
+
+  it('queries on baeContext', () => {
+    let falsy = withContextTestAction.getContext('falsy');
+    let getFalsy = withContextTestAction.getContext('getFalsy');
+    expect(falsy).toBeFalsy();
+    expect(getFalsy()).toBeFalsy();
+    let truthy = withContextTestAction.getContext('truthy');
+    let getTruthy = withContextTestAction.getContext('getTruthy');
+    expect(truthy).toBeTruthy();
+    expect(getTruthy()).toBeTruthy();
+
+    falsy = withoutContextTestAction.getContext('falsy');
+    getFalsy = withoutContextTestAction.getContext('getFalsy');
+    expect(falsy).toBeFalsy();
+    expect(getFalsy()).toBeFalsy();
+    truthy = withoutContextTestAction.getContext('truthy');
+    getTruthy = withoutContextTestAction.getContext('getTruthy');
+    expect(truthy).toBeTruthy();
+    expect(getTruthy()).toBeTruthy();
+
+    falsy = emptyContextTestAction.getContext('falsy');
+    getFalsy = emptyContextTestAction.getContext('getFalsy');
+    expect(falsy).toBeFalsy();
+    expect(getFalsy()).toBeFalsy();
+    truthy = emptyContextTestAction.getContext('truthy');
+    getTruthy = emptyContextTestAction.getContext('getTruthy');
+    expect(truthy).toBeTruthy();
+    expect(getTruthy()).toBeTruthy();
   });
 });

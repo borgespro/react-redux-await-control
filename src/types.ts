@@ -7,9 +7,13 @@ export type AsyncActionState = 'START' | 'SUCCESS' | 'FAILURE' | 'CANCEL';
 
 export type BaseAction = Action<any> | ActionMeta<any, any>;
 
+export type Context = {
+  [label: string]: any;
+}
+
 export type AsyncActionControlOptions = {
   initialValue: any;
-  context: any;
+  context: Context;
 };
 export type AsyncBaseActionControl = {
   start: ActionFunctionAny<BaseAction>;
@@ -29,6 +33,7 @@ export type Selector = (state: any) => any;
 export type AwaitControlInitializer = {
   keyReducer?: string;
   extractState?: (s: any) => any;
+  baseContext?: Context;
 };
 
 export type ResultSelector<T = any> = (actionId?: string | number) => T;

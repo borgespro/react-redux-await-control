@@ -1,10 +1,12 @@
 import { ReducersMapObject } from 'redux';
 
 import reducer from './reducer';
-import { AwaitControlInitializer } from './types';
+import { AwaitControlInitializer, Context } from './types';
 
 export default class AwaitControl {
   private static control: AwaitControl;
+
+  public baseContext: Context;
 
   public keyReducer: string = 'rrAwaitControl';
 
@@ -22,6 +24,8 @@ export default class AwaitControl {
     if (config?.extractState) {
       AwaitControl.control.extractState = config.extractState;
     }
+
+    AwaitControl.control.baseContext = config?.baseContext || {};
 
     return AwaitControl.control;
   }
