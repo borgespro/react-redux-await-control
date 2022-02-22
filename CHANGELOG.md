@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.15.2
+
+### Patch Changes
+
+- a0458f4: Adding baseContext for AwaitControl instance
+
 ## 0.15.1
 
 ### Patch Changes
