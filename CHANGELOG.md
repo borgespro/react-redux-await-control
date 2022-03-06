@@ -1,5 +1,11 @@
 # react-redux-await-control
 
+## 0.15.3
+
+### Patch Changes
+
+- 49a94b4: Fixing error on getData(AsyncActionControl) with initialValue defined.
+
 ## 0.15.2
 
 ### Patch Changes
