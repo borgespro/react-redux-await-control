@@ -46,7 +46,7 @@ export default class AsyncActionControl<Context = never> {
     const stored = statedAction[this.getKey(actionId)];
 
     if (this.options?.initialValue !== undefined && (!stored || stored[1] === NEVER)) {
-      return { resultData: this.options.initialValue };
+      return { resultData: this.options.initialValue, state: stored?.[0] };
     }
 
     if (stored) {
